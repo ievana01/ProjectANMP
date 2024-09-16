@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/capygo_navigation"
+    app:startDestination="@id/itemHome">
+
+    <fragment
+        android:id="@+id/itemHome"
+        android:name="com.ievana.capygo_anmp.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/itemWhoweare"
+        android:name="com.ievana.capygo_anmp.WhoweareFragment"
+        android:label="fragment_whoweare"
+        tools:layout="@layout/fragment_whoweare" />
+    <fragment
+        android:id="@+id/itemOurschedule"
+        android:name="com.ievana.capygo_anmp.OurScheduleFragment"
+        android:label="fragment_our_schedule"
+        tools:layout="@layout/fragment_our_schedule" />
+</navigation>
