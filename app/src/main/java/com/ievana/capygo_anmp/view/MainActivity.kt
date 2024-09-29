@@ -1,4 +1,4 @@
-package com.ievana.capygo_anmp
+package com.ievana.capygo_anmp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.ievana.capygo_anmp.R
 import com.ievana.capygo_anmp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
