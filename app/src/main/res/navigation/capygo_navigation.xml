@@ -8,16 +8,32 @@
     <fragment
         android:id="@+id/itemHome"
         android:name="com.ievana.capygo_anmp.view.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        android:label="Home Page"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/actionTeamsFragment"
+            app:destination="@id/itemTeams" />
+    </fragment>
     <fragment
         android:id="@+id/itemWhoweare"
         android:name="com.ievana.capygo_anmp.view.WhoweareFragment"
-        android:label="fragment_whoweare"
+        android:label="Who We Are"
         tools:layout="@layout/fragment_whoweare" />
     <fragment
         android:id="@+id/itemOurschedule"
         android:name="com.ievana.capygo_anmp.view.OurScheduleFragment"
-        android:label="fragment_our_schedule"
+        android:label="Our Schedule"
         tools:layout="@layout/fragment_our_schedule" />
+    <fragment
+        android:id="@+id/itemTeams"
+        android:name="com.ievana.capygo_anmp.TeamsFragment"
+        android:label="itemTeams" >
+        <action
+            android:id="@+id/actionTeamMemberFragment"
+            app:destination="@id/itemTeamMember" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemTeamMember"
+        android:name="com.ievana.capygo_anmp.TeamMemberFragment"
+        android:label="itemTeamMember" />
 </navigation>

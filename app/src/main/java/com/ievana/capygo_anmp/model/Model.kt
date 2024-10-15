@@ -18,3 +18,22 @@ data class Member(
     var desc: String,
     var like: Int
 )
+
+data class Team(
+    var gameName: String,
+    var gameURL:String,
+    var teamList: ArrayList<TeamList>
+)
+
+data class TeamList(
+    var id:String,
+    var name: String,
+    var member: ArrayList<TeamMember>
+)
+data class TeamMember(
+    var id:String,
+    var name:String,
+    var role: String,
+    var profileURL:String
+
+)

@@ -2,6 +2,7 @@ package com.ievana.capygo_anmp.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.ievana.capygo_anmp.R
 import com.ievana.capygo_anmp.databinding.CapygoListItemBinding
@@ -38,9 +39,10 @@ class GameListAdapter(val gameList: ArrayList<Game>) : RecyclerView.Adapter<Game
 //            holder.binding.imageView2.setImageResource(R.drawable.background) // Set gambar default jika tidak ada URL
 //        }
 
-//        holder.binding.btnTeams.setOnClickListener {
-//
-//        }
+        holder.binding.btnTeams.setOnClickListener {
+            val action = MainFragmentDirections.actionTeamsFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 
     fun updateGameList(newGame : ArrayList<Game>){
