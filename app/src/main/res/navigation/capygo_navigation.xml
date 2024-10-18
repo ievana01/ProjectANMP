@@ -48,5 +48,9 @@
         android:id="@+id/achievementFragment"
         android:name="com.ievana.capygo_anmp.view.AchievementFragment"
         android:label="fragment_achievement"
-        tools:layout="@layout/fragment_achievement" />
+        tools:layout="@layout/fragment_achievement" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
 </navigation>

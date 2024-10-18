@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ievana.capygo_anmp.R
+import com.ievana.capygo_anmp.databinding.AchievementItemBinding
 import com.ievana.capygo_anmp.databinding.FragmentAchievementBinding
 import com.ievana.capygo_anmp.viewmodel.AchievementViewModel
 
@@ -28,8 +29,9 @@ class AchievementFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val gameName = arguments?.getString("name")
+        val gameName = arguments?.getString("name") // Nama game yang dikirim dari Home
         Log.d("AchievementFragment", "Game Name: $gameName")
+
         viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
 
         viewModel.refresh(gameName ?: "")
@@ -40,18 +42,28 @@ class AchievementFragment : Fragment() {
         observeViewModel()
     }
 
-    fun observeViewModel(){
+    fun observeViewModel() {
         viewModel.achievesLD.observe(viewLifecycleOwner, Observer {
             achievementListAdapter.updateAchievement(it)
+        })
+
+        viewModel.achievesLoadErrorLD.observe(viewLifecycleOwner, Observer {
+            if(it == true){
+                binding.txtError?.visibility = View.VISIBLE
+            }else{
+                binding.txtError?.visibility = View.GONE
+            }
         })
 
         viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
             if(it == true) {
                 binding.recView.visibility = View.GONE
-
+                binding.progressLoad.visibility = View.VISIBLE
             } else {
                 binding.recView.visibility = View.VISIBLE
+                binding.progressLoad.visibility = View.GONE
             }
         })
     }
+
 }
