@@ -45,7 +45,8 @@ data class Schedule(
     var team: String?,
     var location:String?,
     @SerializedName("eventDescription")
-    var desc:String?
+    var desc:String?,
+    var gameImage: String?
 )
 
 

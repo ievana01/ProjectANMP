@@ -28,12 +28,16 @@
     <fragment
         android:id="@+id/itemOurschedule"
         android:name="com.ievana.capygo_anmp.view.OurScheduleFragment"
-        android:label="Our Schedule"
-        tools:layout="@layout/fragment_our_schedule" />
+        android:label="Schedule"
+        tools:layout="@layout/fragment_our_schedule" >
+        <action
+            android:id="@+id/actionScheduleDetailFragment"
+            app:destination="@id/scheduleDetailFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/teamsFragment"
         android:name="com.ievana.capygo_anmp.view.TeamsFragment"
-        android:label="fragment_teams"
+        android:label="Teams"
         tools:layout="@layout/fragment_teams" >
         <action
             android:id="@+id/actionTeamMember"
@@ -42,11 +46,38 @@
     <fragment
         android:id="@+id/teamMemberFragment"
         android:name="com.ievana.capygo_anmp.view.TeamMemberFragment"
-        android:label="fragment_team_member"
+        android:label="Teams"
         tools:layout="@layout/fragment_team_member" />
     <fragment
         android:id="@+id/achievementFragment"
         android:name="com.ievana.capygo_anmp.view.AchievementFragment"
-        android:label="fragment_achievement"
+        android:label="Achivement"
         tools:layout="@layout/fragment_achievement" />
+    <fragment
+        android:id="@+id/scheduleDetailFragment2"
+        android:name="com.ievana.capygo_anmp.view.ScheduleDetailFragment"
+        android:label="Schedule Detail"
+        tools:layout="@layout/fragment_schedule_detail" >
+        <argument
+            android:name="desc"
+            app:argType="string" />
+        <argument
+            android:name="gameImage"
+            app:argType="string" />
+        <argument
+            android:name="ytName"
+            app:argType="string" />
+        <argument
+            android:name="location"
+            app:argType="string" />
+        <argument
+            android:name="time"
+            app:argType="string" />
+        <argument
+            android:name="team"
+            app:argType="string" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -39,7 +39,14 @@ class OurScheduleAdapter(val scheduleList: ArrayList<Schedule>) : RecyclerView.A
         holder.binding.txtTeam.text = scheduleList[position].gameName+" - "+scheduleList[position].team
 
         holder.binding.linearLayoutSchedule.setOnClickListener{
-            val action = OurScheduleFragmentDirections.actionScheduleDetailFragment()
+            val desc = scheduleList[position].desc
+            val image = scheduleList[position].gameImage
+            val name = scheduleList[position].gameName
+            val yt = scheduleList[position].ytLS
+            val time = scheduleList[position].time
+            val loc = scheduleList[position].location
+            val team = scheduleList[position].team
+            val action = OurScheduleFragmentDirections.actionScheduleDetailFragment(desc!!,image!!,yt!!,loc!!, time!!,team!!,name!!)
             Navigation.findNavController(it).navigate(action)
         }
     }
