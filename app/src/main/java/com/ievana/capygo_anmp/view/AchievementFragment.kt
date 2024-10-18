@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ievana.capygo_anmp.R
 import com.ievana.capygo_anmp.databinding.AchievementItemBinding
 import com.ievana.capygo_anmp.databinding.FragmentAchievementBinding
+import com.ievana.capygo_anmp.model.Achievement
 import com.ievana.capygo_anmp.viewmodel.AchievementViewModel
 
 class AchievementFragment : Fragment() {
@@ -29,9 +31,15 @@ class AchievementFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val gameName = arguments?.getString("name") // Nama game yang dikirim dari Home
-        Log.d("AchievementFragment", "Game Name: $gameName")
 
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, achievementListAdapter.achievementList)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.yearSpinner.adapter = adapter
+
+        val gameName = arguments?.getString("name") // Nama game yang dikirim dari Home
+
+        Log.d("AchievementFragment", "Number of achievements: ${achievementListAdapter.achievementList.year
+        }")
         viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
 
         viewModel.refresh(gameName ?: "")

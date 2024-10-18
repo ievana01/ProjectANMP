@@ -1,7 +1,10 @@
 package com.ievana.capygo_anmp.view
 
+import android.graphics.ColorSpace.Model
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.ievana.capygo_anmp.databinding.AchievementItemBinding
 import com.ievana.capygo_anmp.databinding.TeamsListItemBinding
@@ -21,7 +24,8 @@ class AchievementAdapter(val achievementList: ArrayList<Achievement>):RecyclerVi
     }
 
     override fun onBindViewHolder(holder: AchievementAdapter.AchievementViewHolder, position: Int) {
-//        holder.binding.yearSpinner
+
+
         holder.binding.txtACName.text = achievementList[position].winningTeam
         holder.binding.txtACAchiv.text = achievementList[position].competitionTitle
     }
