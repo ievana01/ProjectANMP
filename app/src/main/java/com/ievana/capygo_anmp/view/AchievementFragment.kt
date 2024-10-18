@@ -38,7 +38,7 @@ class AchievementFragment : Fragment() {
 
         val gameName = arguments?.getString("name") // Nama game yang dikirim dari Home
 
-        Log.d("AchievementFragment", "Number of achievements: ${achievementListAdapter.achievementList.year
+        Log.d("AchievementFragment", "Number of achievements: ${achievementListAdapter.achievementList
         }")
         viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
 
