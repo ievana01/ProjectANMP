@@ -42,12 +42,22 @@
         <action
             android:id="@+id/actionTeamMember"
             app:destination="@id/teamMemberFragment" />
+        <argument
+            android:name="image"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/teamMemberFragment"
         android:name="com.ievana.capygo_anmp.view.TeamMemberFragment"
         android:label="Teams"
-        tools:layout="@layout/fragment_team_member" />
+        tools:layout="@layout/fragment_team_member" >
+        <argument
+            android:name="teamName"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/achievementFragment"
         android:name="com.ievana.capygo_anmp.view.AchievementFragment"

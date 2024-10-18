@@ -40,12 +40,13 @@ class GameListAdapter(val gameList: ArrayList<Game>) : RecyclerView.Adapter<Game
 //        }
 
         val name = gameList[position].name
+        val img = gameList[position].image
         holder.binding.btnTeams.setOnClickListener {
-            val action = MainFragmentDirections.actionTeamsFragment()
+            val action = MainFragmentDirections.actionTeamsFragment(img!!)
             Navigation.findNavController(it).navigate(action)
         }
         holder.binding.btnAchivement.setOnClickListener{
-            val img = gameList[position].image
+
             val action = MainFragmentDirections.actionAchievementFragment(name!!, img!!)
             Navigation.findNavController(it).navigate(action)
         }

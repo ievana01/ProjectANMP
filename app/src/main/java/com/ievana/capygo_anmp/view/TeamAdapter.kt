@@ -26,7 +26,9 @@ class TeamAdapter(val teamList: ArrayList<Team>) : RecyclerView.Adapter<TeamAdap
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
         holder.binding.txtTeamName.text = teamList[position].teamName
         holder.binding.cardView.setOnClickListener {
-            val action = TeamsFragmentDirections.actionTeamMember()
+            val teamName = teamList[position].teamName
+            val id = teamList[position].id
+            val action = TeamsFragmentDirections.actionTeamMember(teamName!!,id!!)
             Navigation.findNavController(it).navigate(action)
         }
     }

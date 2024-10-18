@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ievana.capygo_anmp.databinding.FragmentTeamsBinding
 
 import com.ievana.capygo_anmp.viewmodel.MemberViewModel
+import com.squareup.picasso.Picasso
 
 class TeamsFragment : Fragment() {
     private lateinit var binding: FragmentTeamsBinding
@@ -30,6 +31,9 @@ class TeamsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val name = arguments?.getString("name")
+        val img = TeamsFragmentArgs.fromBundle(requireArguments()).image
+
+        Picasso.get().load(img).into(binding.imgTeam)
 
         viewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
         viewModel.refresh()

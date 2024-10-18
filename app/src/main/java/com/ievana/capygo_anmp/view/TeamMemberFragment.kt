@@ -17,6 +17,7 @@ class TeamMemberFragment : Fragment() {
     private lateinit var binding: FragmentTeamMemberBinding
     private lateinit var viewModel: MemberViewModel
     private val teamMemberAdapter = TeamMemberAdapter(arrayListOf())
+    private var teamID: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +29,10 @@ class TeamMemberFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val teamName = TeamMemberFragmentArgs.fromBundle(requireArguments()).teamName
+        teamID = TeamMemberFragmentArgs.fromBundle(requireArguments()).id
+
+        binding.textView.text = teamName
         viewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
         viewModel.refresh()
 
@@ -38,8 +43,14 @@ class TeamMemberFragment : Fragment() {
     }
 
     fun observeViewModel(){
-        viewModel.membersLD.observe(viewLifecycleOwner, Observer {
-            teamMemberAdapter.updateTeamMember(it)
+        viewModel.membersLD.observe(viewLifecycleOwner, Observer { teams ->
+            // Mengambil tim yang sesuai dengan teamID
+            val selectedTeam = teams.find { it.id == teamID }
+
+            // Jika tim yang sesuai ditemukan, update daftar anggota tim di adapter
+            selectedTeam?.let {
+                teamMemberAdapter.updateTeamMember(it.teamMember)
+            }
         })
 
         viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
