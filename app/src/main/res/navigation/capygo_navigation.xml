@@ -16,6 +16,9 @@
         <argument
             android:name="gameName"
             app:argType="string" />
+        <action
+            android:id="@+id/actionAchievementFragment"
+            app:destination="@id/achievementFragment" />
     </fragment>
     <fragment
         android:id="@+id/itemWhoweare"
@@ -41,4 +44,9 @@
         android:name="com.ievana.capygo_anmp.view.TeamMemberFragment"
         android:label="fragment_team_member"
         tools:layout="@layout/fragment_team_member" />
+    <fragment
+        android:id="@+id/achievementFragment"
+        android:name="com.ievana.capygo_anmp.view.AchievementFragment"
+        android:label="fragment_achievement"
+        tools:layout="@layout/fragment_achievement" />
 </navigation>

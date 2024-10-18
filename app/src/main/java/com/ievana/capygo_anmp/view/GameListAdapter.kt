@@ -44,6 +44,10 @@ class GameListAdapter(val gameList: ArrayList<Game>) : RecyclerView.Adapter<Game
             val action = MainFragmentDirections.actionTeamsFragment()
             Navigation.findNavController(it).navigate(action)
         }
+        holder.binding.btnAchivement.setOnClickListener{
+            val action = MainFragmentDirections.actionAchievementFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 
     fun updateGameList(newGame : ArrayList<Game>){

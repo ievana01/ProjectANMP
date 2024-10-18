@@ -15,7 +15,7 @@ class MemberViewModel:ViewModel() {
 
     fun refresh(){
         membersLD.value = arrayListOf(
-            Team("1","EVOS", "EVOS Esports (briefly known as Zero Latitude) is a professional esports organisation based in Jakarta, Indonesia. It has competitive teams in Arena of Valor, Apex Legends, Free Fire, Mobile Legends: Bang Bang, PUBG Mobile and League of Legends: Wild Rift.", 10, "https://robohash.org/teamAlpha",
+            Team("1","EVOS Legends", "EVOS Esports (briefly known as Zero Latitude) is a professional esports organisation based in Jakarta, Indonesia. It has competitive teams in Arena of Valor, Apex Legends, Free Fire, Mobile Legends: Bang Bang, PUBG Mobile and League of Legends: Wild Rift.", 10, "https://robohash.org/teamAlpha",
                 arrayListOf(
                     Member(
                         "1",
@@ -25,7 +25,7 @@ class MemberViewModel:ViewModel() {
                     )
                 )
             ),
-            Team("2","PMSL-EMEA", "PUBG Mobile Super League - EMEA (also known as PMSL EMEA) is the official professional PUBG Mobile partnership league held across Europe, Middle East and Africa.", 5, "",
+            Team("2","Fnatic", "In February 2021 Fnatic entered Valorant by picking up mix team SUMN FC. The successful European players joined the Black and Orange to form Fnatic’s first-ever VALORANT roster.", 5, "https://robohash.org/teamBeta",
                 arrayListOf(
                     Member(
                         "1",
@@ -35,7 +35,7 @@ class MemberViewModel:ViewModel() {
                     )
                 )
             ),
-            Team("3", "G2 ESPORT", "G2 Esports entered VALORANT in June 2020, and have since become one of the most successful European organizations in the game, winning every Ignition Series event in the region.", 10, "https://robohash.org/teamGamma",
+            Team("3", "Team Liquid", "Team Liquid is a professional esports organization founded in the Netherlands in 2000. Originally a Brood War clan, the team switched to StarCraft II during the SC2 Beta in 2010, and became one of the most successful foreign teams. On August 7, 2020, Team Liquid entered VALORANT by signing fish123.", 10, "https://robohash.org/teamGamma",
                 arrayListOf(
                     Member(
                         "1",

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ievana.capygo_anmp.databinding.MemberListItemBinding
 import com.ievana.capygo_anmp.model.Team
+import com.squareup.picasso.Picasso
 
 class MemberListAdapter(val memberList:ArrayList<Team>):RecyclerView.Adapter<MemberListAdapter.MemberViewHolder>(){
     class MemberViewHolder(var binding : MemberListItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -28,6 +29,10 @@ class MemberListAdapter(val memberList:ArrayList<Team>):RecyclerView.Adapter<Mem
             holder.binding.btnLike.text = memberList[position].like.toString()
             notifyItemChanged(position)
         }
+
+        val builder = Picasso.Builder(holder.itemView.context)
+        builder.listener { picasso, uri, exception -> exception.printStackTrace() }
+        Picasso.get().load(memberList[position].imageTeam).into(holder.binding.imgMember)
     }
 
     fun updateMemberList(newMember : ArrayList<Team>){

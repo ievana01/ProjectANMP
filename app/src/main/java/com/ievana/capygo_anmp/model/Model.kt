@@ -5,13 +5,14 @@ data class Game(
     var name: String?,
     var description: String?,
     var image: String?,
-    var teams: ArrayList<Team>
+    var teams: ArrayList<Team>,
+    var achievements : ArrayList<Achievement>
 )
 
 data class Achievement(
     var year: Int?,
-    var winningTeam: String?,
-    var competitionTitle: String?
+    var winningTeam: String?,//nama team
+    var competitionTitle: String? //list competition
 )
 data class Team(
     //untuk team page dan who we are
