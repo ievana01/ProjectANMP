@@ -29,7 +29,11 @@
         android:id="@+id/itemOurschedule"
         android:name="com.ievana.capygo_anmp.view.OurScheduleFragment"
         android:label="Our Schedule"
-        tools:layout="@layout/fragment_our_schedule" />
+        tools:layout="@layout/fragment_our_schedule" >
+        <action
+            android:id="@+id/actionScheduleDetailFragment"
+            app:destination="@id/scheduleDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/teamsFragment"
         android:name="com.ievana.capygo_anmp.view.TeamsFragment"
@@ -49,4 +53,9 @@
         android:name="com.ievana.capygo_anmp.view.AchievementFragment"
         android:label="fragment_achievement"
         tools:layout="@layout/fragment_achievement" />
+    <fragment
+        android:id="@+id/scheduleDetailFragment"
+        android:name="com.ievana.capygo_anmp.view.ScheduleDetailFragment"
+        android:label="fragment_schedule_detail"
+        tools:layout="@layout/fragment_schedule_detail" />
 </navigation>

@@ -6,15 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".view.OurScheduleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Our Schedule"
-        android:textAlignment="center"
-        android:textSize="34sp"
-        android:textStyle="bold" />
+        android:orientation="vertical">
 
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewSchedule"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 </FrameLayout>
