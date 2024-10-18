@@ -22,8 +22,9 @@ class AchievementAdapter(val achievementList: ArrayList<Achievement>):RecyclerVi
 
     override fun onBindViewHolder(holder: AchievementAdapter.AchievementViewHolder, position: Int) {
 //        holder.binding.yearSpinner
+        holder.binding.txtNumber.text = (position+1).toString()
         holder.binding.txtACName.text = achievementList[position].winningTeam
-        holder.binding.txtACAchiv.text = achievementList[position].competitionTitle
+        holder.binding.txtACAchiv.text = achievementList[position].competitionTitle + " ("+achievementList[position].year+") -"
     }
 
     override fun getItemCount(): Int {

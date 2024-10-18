@@ -52,7 +52,14 @@
         android:id="@+id/achievementFragment"
         android:name="com.ievana.capygo_anmp.view.AchievementFragment"
         android:label="Achivement"
-        tools:layout="@layout/fragment_achievement" />
+        tools:layout="@layout/fragment_achievement" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/scheduleDetailFragment2"
         android:name="com.ievana.capygo_anmp.view.ScheduleDetailFragment"

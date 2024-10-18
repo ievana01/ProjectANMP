@@ -13,6 +13,7 @@ import com.ievana.capygo_anmp.R
 import com.ievana.capygo_anmp.databinding.AchievementItemBinding
 import com.ievana.capygo_anmp.databinding.FragmentAchievementBinding
 import com.ievana.capygo_anmp.viewmodel.AchievementViewModel
+import com.squareup.picasso.Picasso
 
 class AchievementFragment : Fragment() {
     private lateinit var binding: FragmentAchievementBinding
@@ -29,8 +30,10 @@ class AchievementFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val gameName = arguments?.getString("name") // Nama game yang dikirim dari Home
-        Log.d("AchievementFragment", "Game Name: $gameName")
+        val gameName = AchievementFragmentArgs.fromBundle(requireArguments()).name
+        val img = AchievementFragmentArgs.fromBundle(requireArguments()).image
+        binding.txtGameName.text = gameName
+        Picasso.get().load(img).into(binding.gameImage)
 
         viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
 
