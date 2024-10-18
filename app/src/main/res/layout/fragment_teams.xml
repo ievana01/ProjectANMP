@@ -14,9 +14,19 @@
             android:id="@+id/imgTeam"
             android:layout_width="0dp"
             android:layout_height="200dp"
+            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            tools:src="@drawable/background" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recViewTeams"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgTeam" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

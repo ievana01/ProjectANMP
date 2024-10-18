@@ -1,39 +1,36 @@
 package com.ievana.capygo_anmp.model
 
 data class Game(
-    val name: String?,
-    val description: String?,
-    val image: String?
+    var id: String,
+    var name: String?,
+    var description: String?,
+    var image: String?,
+    var teams: ArrayList<Team>
 )
 
 data class Achievement(
-    val year: Int?,
-    val winningTeam: String?,
-    val competitionTitle: String?
+    var year: Int?,
+    var winningTeam: String?,
+    var competitionTitle: String?
+)
+data class Team(
+    //untuk team page dan who we are
+    var id:String,
+    var teamName: String,
+    var desc:String, //who we are
+    var like: Int, //who we are
+    var imageTeam: String?,
+    var teamMember:ArrayList<Member>,
 )
 
 data class Member(
+    // untuk team page detail
     var id:String,
-    var name: String,
-    var desc: String,
-    var like: Int
-)
-
-data class Team(
-    var gameName: String,
-    var gameURL:String,
-    var teamList: ArrayList<TeamList>
-)
-
-data class TeamList(
-    var id:String,
-    var name: String,
-    var member: ArrayList<TeamMember>
-)
-data class TeamMember(
-    var id:String,
-    var name:String,
+    var memberName: String,
     var role: String,
-    var profileURL:String
-
+    var memberImage: String?
 )
+
+
+
+

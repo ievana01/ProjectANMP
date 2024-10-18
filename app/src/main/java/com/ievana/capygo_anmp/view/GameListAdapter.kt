@@ -39,6 +39,7 @@ class GameListAdapter(val gameList: ArrayList<Game>) : RecyclerView.Adapter<Game
 //            holder.binding.imageView2.setImageResource(R.drawable.background) // Set gambar default jika tidak ada URL
 //        }
 
+        val name = gameList[position].name
         holder.binding.btnTeams.setOnClickListener {
             val action = MainFragmentDirections.actionTeamsFragment()
             Navigation.findNavController(it).navigate(action)

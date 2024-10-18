@@ -15,7 +15,7 @@ import com.ievana.capygo_anmp.viewmodel.MemberViewModel
 
 class WhoweareFragment : Fragment() {
 
-    private lateinit var binding: FragmentMainBinding
+    private lateinit var binding: FragmentWhoweareBinding
     private lateinit var viewModel: MemberViewModel
     private val memberListAdapter = MemberListAdapter(arrayListOf())
 
@@ -23,17 +23,17 @@ class WhoweareFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMainBinding.inflate(inflater, container, false)
+        binding = FragmentWhoweareBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
-        viewModel.refresh()
+//        viewModel.refresh()
 
-        binding.recView.layoutManager = LinearLayoutManager(context)
-        binding.recView.adapter = memberListAdapter
+        binding.recViewWhoWeAre.layoutManager = LinearLayoutManager(context)
+        binding.recViewWhoWeAre.adapter = memberListAdapter
 
         observeViewModel()
     }
@@ -45,19 +45,19 @@ class WhoweareFragment : Fragment() {
 
         viewModel.memberLoadErrorLD.observe(viewLifecycleOwner, Observer {
             if(it == true){
-                binding.txtError?.visibility = View.VISIBLE
+                binding.txtErrorWhoWeAre?.visibility = View.VISIBLE
             }else{
-                binding.txtError?.visibility = View.GONE
+                binding.txtErrorWhoWeAre?.visibility = View.GONE
             }
         })
 
         viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
             if(it == true) {
-                binding.recView.visibility = View.GONE
-                binding.progressLoad.visibility = View.VISIBLE
+                binding.recViewWhoWeAre.visibility = View.GONE
+                binding.progressBar.visibility = View.VISIBLE
             } else {
-                binding.recView.visibility = View.VISIBLE
-                binding.progressLoad.visibility = View.GONE
+                binding.recViewWhoWeAre.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
             }
         })
     }
