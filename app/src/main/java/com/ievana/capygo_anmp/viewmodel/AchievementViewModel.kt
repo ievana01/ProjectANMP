@@ -20,53 +20,36 @@ class AchievementViewModel(application: Application):AndroidViewModel(applicatio
     val loadingLD = MutableLiveData<Boolean>()
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
-
-//    fun refresh(){
-//        loadingLD.value = true
-//        achievesLoadErrorLD.value = false
-//
-//        queue = Volley.newRequestQueue(getApplication())
-//        var url = "https://www.jsonkeeper.com/b/IRFG"
-//        val stringRequest = StringRequest(
-//            Request.Method.GET, url,{
-//                val sType = object : TypeToken<List<Achievement>>(){}.type
-//                val result = Gson().fromJson<List<Achievement>>(it, sType)
-//                achievesLD.value = result as ArrayList<Achievement>?
-//                loadingLD.value = false
-//                Log.d("achievevoley",result.toString())
-//            },{
-//                Log.d("achievevoley", it.toString())
-//                achievesLoadErrorLD.value = false
-//                loadingLD.value = false
-//            }
-//        )
-//        stringRequest.tag = TAG
-//        queue?.add(stringRequest)
-//    }
     fun refresh(gameName: String) {
         loadingLD.value = true
         achievesLoadErrorLD.value = false
 
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://www.jsonkeeper.com/b/HU7W"
+        val url = "https://www.jsonkeeper.com/b/HU7W" // URL JSON
+
         val stringRequest = StringRequest(
             Request.Method.GET, url, { response ->
                 val sType = object : TypeToken<List<Game>>() {}.type
                 val result = Gson().fromJson<List<Game>>(response, sType)
 
-                // Ambil pencapaian dari game yang sesuai dengan gameName
-                val gameAchievements = result.find { it.name.equals(gameName, ignoreCase = true) }?.achievements ?: emptyList()
+                // Mencari game berdasarkan nama
+                val game = result.find { it.name == gameName }
 
-                achievesLD.value = ArrayList(gameAchievements) // Update LiveData dengan pencapaian yang sesuai
+                // Jika game ditemukan, ambil daftar achievements
+                if (game != null) {
+                    achievesLD.value = ArrayList(game.achievements)
+                } else {
+                    achievesLD.value = arrayListOf() // Jika game tidak ditemukan
+                }
+
                 loadingLD.value = false
-                Log.d("achievevoley", gameAchievements.toString())
-            },
-            { error ->
-                Log.d("achievevoley", error.toString())
+            }, { error ->
+                Log.d("Error", error.toString())
                 achievesLoadErrorLD.value = true
                 loadingLD.value = false
             }
         )
+
         stringRequest.tag = TAG
         queue?.add(stringRequest)
     }

@@ -9,7 +9,7 @@ data class Game(
     var description: String?,
     var image: String?,
     var teams: ArrayList<Team>,
-    var achievements : ArrayList<Achievement>
+    var achievements : List<Achievement>
 )
 
 data class Achievement(
