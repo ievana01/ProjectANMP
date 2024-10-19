@@ -11,16 +11,6 @@ import com.ievana.capygo_anmp.R
 import com.ievana.capygo_anmp.databinding.FragmentOurScheduleBinding
 import com.ievana.capygo_anmp.viewmodel.ScheduleViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [OurScheduleFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class OurScheduleFragment : Fragment() {
     private lateinit var binding: FragmentOurScheduleBinding
     private lateinit var viewModel: ScheduleViewModel

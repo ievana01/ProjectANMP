@@ -25,7 +25,7 @@ class AchievementViewModel(application: Application):AndroidViewModel(applicatio
         achievesLoadErrorLD.value = false
 
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://www.jsonkeeper.com/b/HU7W" // URL JSON
+        val url = "https://www.jsonkeeper.com/b/OQ04" // URL JSON
 
         val stringRequest = StringRequest(
             Request.Method.GET, url, { response ->

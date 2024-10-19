@@ -13,12 +13,10 @@ import com.ievana.capygo_anmp.databinding.FragmentTeamsBinding
 
 import com.ievana.capygo_anmp.viewmodel.MemberViewModel
 import com.squareup.picasso.Picasso
-
 class TeamsFragment : Fragment() {
     private lateinit var binding: FragmentTeamsBinding
     private lateinit var viewModel: MemberViewModel
-    private val memberListAdapter = TeamAdapter(arrayListOf())
-
+    private var memberListAdapter = TeamAdapter(arrayListOf(), "")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +33,7 @@ class TeamsFragment : Fragment() {
 
         Picasso.get().load(img).into(binding.imgTeam)
 
+        memberListAdapter = TeamAdapter(arrayListOf(), img)
         viewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
         viewModel.refresh()
 

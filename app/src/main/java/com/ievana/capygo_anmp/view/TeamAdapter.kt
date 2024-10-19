@@ -1,17 +1,17 @@
 package com.ievana.capygo_anmp.view
 
-import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 
 import com.ievana.capygo_anmp.databinding.TeamsListItemBinding
-import com.ievana.capygo_anmp.model.Game
+import com.ievana.capygo_anmp.model.Member
 import com.ievana.capygo_anmp.model.Team
 import com.ievana.capygo_anmp.viewmodel.MemberViewModel
 
-class TeamAdapter(val teamList: ArrayList<Team>) : RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
+class TeamAdapter(val teamList: ArrayList<Team>,private val img: String?) : RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
     class TeamViewHolder(var binding: TeamsListItemBinding):RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
@@ -28,7 +28,7 @@ class TeamAdapter(val teamList: ArrayList<Team>) : RecyclerView.Adapter<TeamAdap
         holder.binding.cardView.setOnClickListener {
             val teamName = teamList[position].teamName
             val id = teamList[position].id
-            val action = TeamsFragmentDirections.actionTeamMember(teamName!!,id!!)
+            val action = TeamsFragmentDirections.actionTeamMember(teamName!!,id!!,img!!)
             Navigation.findNavController(it).navigate(action)
         }
     }
