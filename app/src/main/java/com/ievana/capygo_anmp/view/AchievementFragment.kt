@@ -78,7 +78,7 @@ class AchievementFragment : Fragment() {
 
             yearsList = it.map { achievement -> achievement.year.toString() }
 
-            if(binding.yearSpinner.adapter == null){
+            if(!isSpinnerInitialized){
                 val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1,
                     yearsList)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
