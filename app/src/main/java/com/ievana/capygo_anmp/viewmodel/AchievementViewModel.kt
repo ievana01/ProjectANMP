@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken
 import com.ievana.capygo_anmp.model.Achievement
 import com.ievana.capygo_anmp.model.Game
 import com.ievana.capygo_anmp.model.Team
+import java.time.Year
 
 class AchievementViewModel(application: Application):AndroidViewModel(application) {
     val achievesLD = MutableLiveData<ArrayList<Achievement>>()
@@ -20,7 +21,7 @@ class AchievementViewModel(application: Application):AndroidViewModel(applicatio
     val loadingLD = MutableLiveData<Boolean>()
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
-    fun refresh(gameName: String) {
+    fun refresh(gameName: String, yearAch: String) {
         loadingLD.value = true
         achievesLoadErrorLD.value = false
 
@@ -37,9 +38,21 @@ class AchievementViewModel(application: Application):AndroidViewModel(applicatio
 
                 // Jika game ditemukan, ambil daftar achievements
                 if (game != null) {
-                    achievesLD.value = ArrayList(game.achievements)
+                    if(yearAch != ""){
+
+                            val filteredAchievements = game.achievements.filter { it.year.toString() == yearAch }
+                            if(filteredAchievements!=null) {
+                                achievesLD.value = ArrayList(filteredAchievements)
+                                Log.e("hasil", "$filteredAchievements")
+                            }
+                    }
+                    else {
+                        achievesLD.value = ArrayList(game.achievements)
+                    }
+                    // Set filtered achievements
                 } else {
                     achievesLD.value = arrayListOf() // Jika game tidak ditemukan
+
                 }
 
                 loadingLD.value = false

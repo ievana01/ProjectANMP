@@ -28,7 +28,6 @@ class TeamsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val name = arguments?.getString("name")
         val img = TeamsFragmentArgs.fromBundle(requireArguments()).image
 
         Picasso.get().load(img).into(binding.imgTeam)

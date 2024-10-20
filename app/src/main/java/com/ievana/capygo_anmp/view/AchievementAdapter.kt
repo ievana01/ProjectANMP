@@ -1,5 +1,6 @@
 package com.ievana.capygo_anmp.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,9 +19,12 @@ class AchievementAdapter(val achievementList: ArrayList<Achievement>):RecyclerVi
     }
 
     override fun onBindViewHolder(holder: AchievementAdapter.AchievementViewHolder, position: Int) {
-        holder.binding.txtNumber.text = (position+1).toString()
-        holder.binding.txtACName.text = achievementList[position].winningTeam
-        holder.binding.txtACAchiv.text = achievementList[position].competitionTitle + " ("+achievementList[position].year+") -"
+            Log.d("achivement", "null year")
+            holder.binding.txtNumber.text = (position + 1).toString()
+            holder.binding.txtACName.text = achievementList[position].winningTeam
+            holder.binding.txtACAchiv.text =
+                achievementList[position].competitionTitle + " (" + achievementList[position].year + ") -"
+
     }
 
     override fun getItemCount(): Int {
@@ -32,6 +36,7 @@ class AchievementAdapter(val achievementList: ArrayList<Achievement>):RecyclerVi
         achievementList.addAll(newAchievement)
         notifyDataSetChanged()
     }
+
 
 
 }
