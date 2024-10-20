@@ -25,19 +25,9 @@ class GameListAdapter(val gameList: ArrayList<Game>) : RecyclerView.Adapter<Game
         holder.binding.txtEsportName.text = gameList[position].name
         holder.binding.txtDescription.text = gameList[position].description
 
-
         val builder = Picasso.Builder(holder.itemView.context)
         builder.listener {picasso, uri, exception -> exception.printStackTrace()}
         Picasso.get().load(gameList[position].image).into(holder.binding.imageView2)
-//        if (!image.isNullOrEmpty()) {
-//            Picasso.get()
-//                .load(image)
-//                .placeholder(R.drawable.background) // Gambar sementara
-//                .error(R.drawable.background) // Gambar error
-//                .into(holder.binding.imageView2)
-//        } else {
-//            holder.binding.imageView2.setImageResource(R.drawable.background) // Set gambar default jika tidak ada URL
-//        }
 
         val name = gameList[position].name
         val img = gameList[position].image
