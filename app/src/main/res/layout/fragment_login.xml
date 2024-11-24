@@ -57,6 +57,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView12">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtInputUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -73,6 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtFirstName">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtInputPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"

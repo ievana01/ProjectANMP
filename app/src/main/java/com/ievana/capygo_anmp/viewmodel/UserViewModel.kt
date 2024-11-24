@@ -43,17 +43,6 @@ import kotlin.coroutines.CoroutineContext
             }
         }
 
-        fun getUserByUsername(username: String): MutableLiveData<User?> {
-            val userLD = MutableLiveData<User?>()
-            launch {
-                val db = CapyGoDatabase.buildDatabase(getApplication())
-                val user = db.capygoDao().getUserByUsername(username)
-                userLD.postValue(user)
-            }
-            return userLD
-        }
-
-
 
 
 
