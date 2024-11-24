@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationBarView.OnItemSelectedListener
 import com.ievana.capygo_anmp.databinding.FragmentAchievementBinding
@@ -39,6 +40,8 @@ class AchievementFragment : Fragment() {
         val img = AchievementFragmentArgs.fromBundle(requireArguments()).image
         binding.txtGameName.text = gameName
         Picasso.get().load(img).into(binding.gameImage)
+
+
 
         viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
         viewModel.refresh(gameName ?: "", "")

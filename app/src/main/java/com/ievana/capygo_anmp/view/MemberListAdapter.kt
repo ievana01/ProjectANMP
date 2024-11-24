@@ -25,9 +25,19 @@ class MemberListAdapter(val memberList:ArrayList<Team>):RecyclerView.Adapter<Mem
         holder.binding.btnLike.text = memberList[position].like.toString()
 
         holder.binding.btnLike.setOnClickListener {
-            memberList[position].like += 1
-            holder.binding.btnLike.text = memberList[position].like.toString()
-            notifyItemChanged(position)
+//            memberList[position].like += 1
+//            holder.binding.btnLike.text = memberList[position].like.toString()
+//            notifyItemChanged(position)
+
+            if(memberList[position].like < 20) {
+                memberList[position].like += 1
+                holder.binding.btnLike.text = memberList[position].like.toString()
+                notifyItemChanged(position)
+            }
+
+            if(memberList[position].like == 20){
+                holder.binding.btnLike.isEnabled = false
+            }
         }
 
         val builder = Picasso.Builder(holder.itemView.context)

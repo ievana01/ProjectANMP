@@ -43,6 +43,11 @@ import kotlin.coroutines.CoroutineContext
             }
         }
 
+        fun loginUser(username:String, password:String):User?{
+            val db = CapyGoDatabase.buildDatabase((getApplication()))
+            return  db.capygoDao().loginUser(username,password)
+        }
+
 
 
 
