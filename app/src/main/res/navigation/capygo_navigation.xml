@@ -100,4 +100,14 @@
             android:name="gameName"
             app:argType="string" />
     </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.ievana.capygo_anmp.view.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/signUpActivity"
+        android:name="com.ievana.capygo_anmp.view.SignUpActivity"
+        android:label="activity_sign_up"
+        tools:layout="@layout/activity_sign_up" />
 </navigation>
