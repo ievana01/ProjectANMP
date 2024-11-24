@@ -1,7 +1,26 @@
 package com.ievana.capygo_anmp.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.util.stream.BaseStream
+
+
+@Entity
+data class User(
+    @ColumnInfo(name="firstname")
+    var firstName:String,
+    @ColumnInfo(name="lastname")
+    var lastName:String,
+    @ColumnInfo(name="username")
+    var username:String,
+    @ColumnInfo(name="password")
+    var password:String
+) {
+    @PrimaryKey(autoGenerate = true)
+    var uuid:Int =0
+}
 
 data class Game(
     var id: String,

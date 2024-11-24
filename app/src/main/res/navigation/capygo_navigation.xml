@@ -2,14 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/capygo_navigation"
+    android:id="@+id/actionHome"
     app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/itemHome"
         android:name="com.ievana.capygo_anmp.view.MainFragment"
         android:label="Home Page"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/actionTeamsFragment"
             app:destination="@id/teamsFragment" />
@@ -29,7 +29,7 @@
         android:id="@+id/itemOurschedule"
         android:name="com.ievana.capygo_anmp.view.OurScheduleFragment"
         android:label="Schedule"
-        tools:layout="@layout/fragment_our_schedule" >
+        tools:layout="@layout/fragment_our_schedule">
         <action
             android:id="@+id/actionScheduleDetailFragment"
             app:destination="@id/scheduleDetailFragment2" />
@@ -38,7 +38,7 @@
         android:id="@+id/teamsFragment"
         android:name="com.ievana.capygo_anmp.view.TeamsFragment"
         android:label="Teams"
-        tools:layout="@layout/fragment_teams" >
+        tools:layout="@layout/fragment_teams">
         <action
             android:id="@+id/actionTeamMember"
             app:destination="@id/teamMemberFragment" />
@@ -50,7 +50,7 @@
         android:id="@+id/teamMemberFragment"
         android:name="com.ievana.capygo_anmp.view.TeamMemberFragment"
         android:label="Teams"
-        tools:layout="@layout/fragment_team_member" >
+        tools:layout="@layout/fragment_team_member">
         <argument
             android:name="teamName"
             app:argType="string" />
@@ -65,7 +65,7 @@
         android:id="@+id/achievementFragment"
         android:name="com.ievana.capygo_anmp.view.AchievementFragment"
         android:label="Achivement"
-        tools:layout="@layout/fragment_achievement" >
+        tools:layout="@layout/fragment_achievement">
         <argument
             android:name="name"
             app:argType="string" />
@@ -77,7 +77,7 @@
         android:id="@+id/scheduleDetailFragment2"
         android:name="com.ievana.capygo_anmp.view.ScheduleDetailFragment"
         android:label="Schedule Detail"
-        tools:layout="@layout/fragment_schedule_detail" >
+        tools:layout="@layout/fragment_schedule_detail">
         <argument
             android:name="desc"
             app:argType="string" />
@@ -104,10 +104,13 @@
         android:id="@+id/loginFragment"
         android:name="com.ievana.capygo_anmp.view.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginFragment_to_signUpFragment"
+            android:id="@+id/actionSignUp"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/actionHomeFragment"
+            app:destination="@id/itemHome" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
