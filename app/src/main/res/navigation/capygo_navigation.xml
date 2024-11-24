@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/capygo_navigation"
-    app:startDestination="@id/itemHome">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/itemHome"
@@ -100,14 +100,18 @@
             android:name="gameName"
             app:argType="string" />
     </fragment>
-    <activity
-        android:id="@+id/loginActivity"
-        android:name="com.ievana.capygo_anmp.view.LoginActivity"
-        android:label="activity_login"
-        tools:layout="@layout/activity_login" />
-    <activity
-        android:id="@+id/signUpActivity"
-        android:name="com.ievana.capygo_anmp.view.SignUpActivity"
-        android:label="activity_sign_up"
-        tools:layout="@layout/activity_sign_up" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ievana.capygo_anmp.view.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.ievana.capygo_anmp.view.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>
