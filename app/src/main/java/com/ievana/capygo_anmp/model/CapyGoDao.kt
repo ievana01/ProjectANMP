@@ -19,4 +19,7 @@ interface CapyGoDao {
     @Query("SELECT * FROM user WHERE username= :username AND password = :password")
     fun loginUser(username:String, password:String): User
 
+    @Query("SELECT * FROM user WHERE username = :username LIMIT 1")
+    fun getUserByUsername(username: String): User?
+
 }
