@@ -34,7 +34,7 @@ class TeamsFragment : Fragment() {
 
         memberListAdapter = TeamAdapter(arrayListOf(), img)
         viewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
-        viewModel.refresh()
+        viewModel.refresh("")
 
         binding.recViewTeams.layoutManager = LinearLayoutManager(context)
         binding.recViewTeams.adapter = memberListAdapter

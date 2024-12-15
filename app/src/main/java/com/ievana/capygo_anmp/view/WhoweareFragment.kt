@@ -30,7 +30,7 @@ class WhoweareFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
-        viewModel.refresh()
+        viewModel.refresh("")
 
         binding.recViewWhoWeAre.layoutManager = LinearLayoutManager(context)
         binding.recViewWhoWeAre.adapter = memberListAdapter
@@ -39,7 +39,7 @@ class WhoweareFragment : Fragment() {
             binding.recViewWhoWeAre.visibility = View.GONE
             binding.txtErrorWhoWeAre.visibility = View.GONE
             binding.progressBar.visibility = View.VISIBLE
-            viewModel.refresh()
+            viewModel.refresh("")
             binding.refreshLayout.isRefreshing = false
         }
         observeViewModel()

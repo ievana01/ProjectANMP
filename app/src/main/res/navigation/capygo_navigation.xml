@@ -121,4 +121,18 @@
             android:id="@+id/actionSignUptoLogin"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/itemApplyTeam"
+        android:name="com.ievana.capygo_anmp.view.ApplyTeamFragment"
+        android:label="fragment_apply_team"
+        tools:layout="@layout/fragment_apply_team" >
+        <action
+            android:id="@+id/actionNewApplyTeam"
+            app:destination="@id/newApplyTeamFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newApplyTeamFragment"
+        android:name="com.ievana.capygo_anmp.view.NewApplyTeamFragment"
+        android:label="fragment_new_apply_team"
+        tools:layout="@layout/fragment_new_apply_team" />
 </navigation>

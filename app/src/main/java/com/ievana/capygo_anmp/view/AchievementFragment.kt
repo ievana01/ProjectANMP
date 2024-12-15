@@ -41,8 +41,6 @@ class AchievementFragment : Fragment() {
         binding.txtGameName.text = gameName
         Picasso.get().load(img).into(binding.gameImage)
 
-
-
         viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
         viewModel.refresh(gameName ?: "", "")
 

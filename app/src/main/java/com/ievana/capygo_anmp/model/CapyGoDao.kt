@@ -21,5 +21,4 @@ interface CapyGoDao {
 
     @Query("SELECT * FROM user WHERE username = :username LIMIT 1")
     fun getUserByUsername(username: String): User?
-
 }

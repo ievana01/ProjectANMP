@@ -22,6 +22,22 @@ data class User(
     var uuid:Int =0
 }
 
+
+@Entity
+data class Proposal(
+    @ColumnInfo(name="gameName")
+    var gameName:String,
+    @ColumnInfo(name="teamName")
+    var teamName:String,
+    @ColumnInfo(name="desc")
+    var desc:String,
+    @ColumnInfo(name="status")
+    var status:String,
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id_prop:Int =0
+}
+
 data class Game(
     var id: String,
     var name: String?,
@@ -36,9 +52,11 @@ data class Achievement(
     var winningTeam: String?,//nama team
     var competitionTitle: String? //list competition
 )
+
 data class Team(
     //untuk team page dan who we are
     var id:String,
+    var gameName:String,
     var teamName: String,
     var desc:String, //who we are
     var like: Int, //who we are

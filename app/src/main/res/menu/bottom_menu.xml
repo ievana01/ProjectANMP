@@ -17,4 +17,10 @@
         android:icon="@drawable/baseline_calendar_month_24"
         android:title="Our Schedule"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/itemApplyTeam"
+        android:layout_width="wrap_content"
+        android:icon="@drawable/baseline_group_add_24"
+        android:title="Apply Team"
+        app:showAsAction="always" />
 </menu>

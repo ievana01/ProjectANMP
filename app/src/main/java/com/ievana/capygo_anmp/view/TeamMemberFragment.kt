@@ -40,7 +40,7 @@ class TeamMemberFragment : Fragment() {
 
         binding.textView.text = teamName
         viewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
-        viewModel.refresh()
+        viewModel.refresh("")
 
         binding.recViewTeamMember.layoutManager = LinearLayoutManager(context)
         binding.recViewTeamMember.adapter = teamMemberAdapter
