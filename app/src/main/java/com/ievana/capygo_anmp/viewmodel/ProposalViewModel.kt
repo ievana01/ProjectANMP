@@ -14,8 +14,8 @@ import kotlin.coroutines.CoroutineContext
 
 class ProposalViewModel(application: Application)
     : AndroidViewModel(application), CoroutineScope {
-    val todoLD = MutableLiveData<List<Proposal>>()
-    val todoLoadErrorLD = MutableLiveData<Boolean>()
+    val proposalLD = MutableLiveData<List<Proposal>>()
+    val proposalLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
     private var job = Job()
 
@@ -24,12 +24,13 @@ class ProposalViewModel(application: Application)
 
     fun refresh() {
         loadingLD.value = true
-        todoLoadErrorLD.value = false
+        proposalLoadErrorLD.value = false
         launch {
             val db = PropDatabase.buildDatabase(
                 getApplication()
             )
-            todoLD.postValue(db.propDao().selectAllProp())
+            proposalLD.postValue(db.propDao().selectAllProp())
+
             loadingLD.postValue(false)
         }
     }
