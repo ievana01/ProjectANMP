@@ -21,4 +21,22 @@ interface CapyGoDao {
 
     @Query("SELECT * FROM user WHERE username = :username LIMIT 1")
     fun getUserByUsername(username: String): User?
+
+    @Query("SELECT * FROM game")
+    fun selectGame(): List<Game>
+
+    @Query("SELECT * FROM team WHERE gameName= :gameName")
+    fun selectTeam(gameName:String):Team
+
+    @Query("SELECT * FROM achievement WHERE competitionTitle= :name")
+    fun getAchieveGame(name:String):Achievement
+
+    @Query("SELECT * FROM achievement WHERE year= :year")
+    fun getAchieveByYear(year:Int):Achievement
+
+    @Query("SELECT * FROM member")
+    fun selectMember(): List<Member>
+
+    @Query("SELECT * FROM schedule")
+    fun getSchedul():List<Schedule>
 }
