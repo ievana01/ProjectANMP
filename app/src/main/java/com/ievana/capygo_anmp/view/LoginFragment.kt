@@ -1,6 +1,8 @@
 package com.ievana.capygo_anmp.view
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,7 @@ import com.ievana.capygo_anmp.databinding.FragmentLoginBinding
 import com.ievana.capygo_anmp.viewmodel.UserViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.math.log
 
 class LoginFragment : Fragment() {
     private lateinit var binding:FragmentLoginBinding
@@ -30,6 +33,19 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val savedUsername = sharedPreferences.getString("username", null)
+        Toast.makeText(requireContext(), "Username tersimpan: $savedUsername", Toast.LENGTH_LONG).show()
+
+        if (savedUsername != null) {
+
+            Log.d("usern", savedUsername)
+            val action = LoginFragmentDirections.actionHomeFragment("")
+            Navigation.findNavController(view).navigate(action)
+            return
+        }
+
         binding.btnLogin.setOnClickListener{
             val uname = binding.txtInputUsername.text.toString()
             val pass = binding.txtInputPassword.text.toString()
@@ -44,6 +60,7 @@ class LoginFragment : Fragment() {
                                 "Welcome, ${user.firstName}!",
                                 Toast.LENGTH_LONG
                             ).show()
+                            sharedPreferences.edit().putString("username", uname).apply()
                             val action = LoginFragmentDirections.actionHomeFragment("")
                             Navigation.findNavController(view).navigate(action)
                         } else{

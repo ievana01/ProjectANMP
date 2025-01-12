@@ -38,14 +38,20 @@ data class Proposal(
     var id_prop:Int =0
 }
 
+@Entity
 data class Game(
-    var id: String,
+    @ColumnInfo(name="gameName")
     var name: String?,
+    @ColumnInfo(name="description")
     var description: String?,
+    @ColumnInfo(name="image")
     var image: String?,
     var teams: ArrayList<Team>,
     var achievements : List<Achievement>
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var id:Int = 0
+}
 
 data class Achievement(
     var year: Int?,
