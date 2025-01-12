@@ -15,4 +15,9 @@ interface GameDao {
 
     @Query("SELECT * FROM team")
     fun selectTeam(): List<Team>
+
+@Query("SELECT * FROM team INNER JOIN game ON team.idGame = game.id WHERE game.gameName = :gameName")
+fun getTeam(gameName: String): List<Team>
+
+
 }

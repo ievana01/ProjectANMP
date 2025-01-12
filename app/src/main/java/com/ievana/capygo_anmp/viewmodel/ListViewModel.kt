@@ -52,6 +52,7 @@ class ListViewModel(application: Application):AndroidViewModel(application), Cor
             // Ambil data game dari database
             val games = db.gameDao().selectGame()
             gamesLD.postValue(games)
+            Log.d("GameViewModel", "Games: ${games}")
             loadingLD.postValue(false)
         }
     }

@@ -37,9 +37,9 @@ class AchievementFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         gameName = AchievementFragmentArgs.fromBundle(requireArguments()).name
-        val img = AchievementFragmentArgs.fromBundle(requireArguments()).image
+//        val img = AchievementFragmentArgs.fromBundle(requireArguments()).image
         binding.txtGameName.text = gameName
-        Picasso.get().load(img).into(binding.gameImage)
+//        Picasso.get().load(img).into(binding.gameImage)
 
 //        viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
 //        viewModel.refresh(gameName ?: "", "")

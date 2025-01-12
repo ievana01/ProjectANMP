@@ -44,7 +44,7 @@ class TeamsFragment : Fragment() {
 
     fun observeViewModel(){
         viewModel.membersLD.observe(viewLifecycleOwner, Observer {
-            memberListAdapter.updateTeam(it)
+//            memberListAdapter.updateTeam(it)
         })
 
         viewModel.loadingLD.observe(viewLifecycleOwner, Observer {

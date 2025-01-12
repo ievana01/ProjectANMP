@@ -30,8 +30,8 @@ class WhoweareFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
-        viewModel.refresh("")
-
+//        viewModel.refresh("")
+        viewModel.fetchTeam()
         binding.recViewWhoWeAre.layoutManager = LinearLayoutManager(context)
         binding.recViewWhoWeAre.adapter = memberListAdapter
 

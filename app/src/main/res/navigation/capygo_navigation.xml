@@ -13,15 +13,15 @@
         <action
             android:id="@+id/actionTeamsFragment"
             app:destination="@id/teamsFragment" />
-        <argument
-            android:name="gameName"
-            app:argType="string" />
         <action
             android:id="@+id/actionAchievementFragment"
             app:destination="@id/achievementFragment" />
         <action
             android:id="@+id/actionloginFalse"
             app:destination="@id/loginFragment" />
+        <argument
+            android:name="gameName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/itemWhoweare"
@@ -71,9 +71,6 @@
         tools:layout="@layout/fragment_achievement">
         <argument
             android:name="name"
-            app:argType="string" />
-        <argument
-            android:name="image"
             app:argType="string" />
     </fragment>
     <fragment

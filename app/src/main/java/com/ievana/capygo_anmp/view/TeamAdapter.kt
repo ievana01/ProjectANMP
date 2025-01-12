@@ -24,13 +24,14 @@ class TeamAdapter(val teamList: ArrayList<Team>,private val img: String?) : Recy
     }
 
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
-        holder.binding.txtTeamName.text = teamList[position].teamName
-        holder.binding.cardView.setOnClickListener {
-            val teamName = teamList[position].teamName
-            val id = teamList[position].idTeam
-            val action = TeamsFragmentDirections.actionTeamMember(teamName!!,id.toString()!!,img!!)
-            Navigation.findNavController(it).navigate(action)
-        }
+        holder.binding.team = teamList[position]
+//        holder.binding.txtTeamName.text = teamList[position].teamName
+//        holder.binding.cardView.setOnClickListener {
+//            val teamName = teamList[position].teamName
+//            val id = teamList[position].idTeam
+//            val action = TeamsFragmentDirections.actionTeamMember(teamName!!,id.toString()!!,img!!)
+//            Navigation.findNavController(it).navigate(action)
+//        }
     }
 
     fun updateTeam(newTeam : ArrayList<Team>){

@@ -20,11 +20,12 @@ class TeamMemberAdapter(val teamMemberList: ArrayList<Member>) : RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: TeamMemberViewHolder, position: Int) {
-        holder.binding.txtRole.text = teamMemberList[position].role
-        holder.binding.txtMemberName.text = teamMemberList[position].memberName
-        val builder = Picasso.Builder(holder.itemView.context)
-        builder.listener {picasso, uri, exception -> exception.printStackTrace()}
-        Picasso.get().load(teamMemberList[position].memberImage).into(holder.binding.imageView3)
+//        holder.binding.team = teamMemberList[position]
+//        holder.binding.txtRole.text = teamMemberList[position].role
+//        holder.binding.txtMemberName.text = teamMemberList[position].memberName
+//        val builder = Picasso.Builder(holder.itemView.context)
+//        builder.listener {picasso, uri, exception -> exception.printStackTrace()}
+//        Picasso.get().load(teamMemberList[position].memberImage).into(holder.binding.imageView3)
     }
 
     override fun getItemCount(): Int {

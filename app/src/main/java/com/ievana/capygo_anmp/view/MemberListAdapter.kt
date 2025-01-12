@@ -20,32 +20,33 @@ class MemberListAdapter(val memberList:ArrayList<Team>):RecyclerView.Adapter<Mem
     }
 
     override fun onBindViewHolder(holder: MemberViewHolder, position: Int) {
-        holder.binding.txtName.text = memberList[position].teamName
-        holder.binding.txtDesc.text = memberList[position].desc
-        holder.binding.btnLike.text = memberList[position].like.toString()
-
-        holder.binding.btnLike.setOnClickListener {
-//            memberList[position].like += 1
-//            holder.binding.btnLike.text = memberList[position].like.toString()
-//            notifyItemChanged(position)
-
-            if(memberList[position].like < 20) {
-                memberList[position].like += 1
-                holder.binding.btnLike.text = memberList[position].like.toString()
-                notifyItemChanged(position)
-            }
-
-            if(memberList[position].like == 20){
-                holder.binding.btnLike.isEnabled = false
-            }
-        }
-
-        val builder = Picasso.Builder(holder.itemView.context)
-        builder.listener { picasso, uri, exception -> exception.printStackTrace() }
-        Picasso.get().load(memberList[position].imageTeam).into(holder.binding.imgMember)
+        holder.binding.team = memberList[position]
+//        holder.binding.txtName.text = memberList[position].teamName
+//        holder.binding.txtDesc.text = memberList[position].desc
+//        holder.binding.btnLike.text = memberList[position].like.toString()
+//
+//        holder.binding.btnLike.setOnClickListener {
+////            memberList[position].like += 1
+////            holder.binding.btnLike.text = memberList[position].like.toString()
+////            notifyItemChanged(position)
+//
+//            if(memberList[position].like < 20) {
+//                memberList[position].like += 1
+//                holder.binding.btnLike.text = memberList[position].like.toString()
+//                notifyItemChanged(position)
+//            }
+//
+//            if(memberList[position].like == 20){
+//                holder.binding.btnLike.isEnabled = false
+//            }
+//        }
+//
+//        val builder = Picasso.Builder(holder.itemView.context)
+//        builder.listener { picasso, uri, exception -> exception.printStackTrace() }
+//        Picasso.get().load(memberList[position].imageTeam).into(holder.binding.imgMember)
     }
 
-    fun updateMemberList(newMember : ArrayList<Team>){
+    fun updateMemberList(newMember : List<Team>){
         memberList.clear()
         memberList.addAll(newMember)
         notifyDataSetChanged()
