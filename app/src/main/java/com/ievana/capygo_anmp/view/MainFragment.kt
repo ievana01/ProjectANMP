@@ -2,6 +2,7 @@ package com.ievana.capygo_anmp.view
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ievana.capygo_anmp.databinding.FragmentMainBinding
-import com.ievana.capygo_anmp.model.Game
 import com.ievana.capygo_anmp.viewmodel.ListViewModel
 
 class MainFragment : Fragment() {
@@ -55,6 +55,7 @@ class MainFragment : Fragment() {
 
     fun observeViewModel(){
         viewModel.gamesLD.observe(viewLifecycleOwner, Observer {
+            Log.e("MainFragment", "Games data is null")
             gameListAdapter.updateGameList(it)
         })
 

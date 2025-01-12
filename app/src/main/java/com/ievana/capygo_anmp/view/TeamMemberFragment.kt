@@ -51,12 +51,12 @@ class TeamMemberFragment : Fragment() {
     fun observeViewModel(){
         viewModel.membersLD.observe(viewLifecycleOwner, Observer { teams ->
             // Mengambil tim yang sesuai dengan teamID
-            val selectedTeam = teams.find { it.id == teamID }
+            val selectedTeam = teams.find { it.idTeam.toString() == teamID }
 
-            // Jika tim yang sesuai ditemukan, update daftar anggota tim di adapter
-            selectedTeam?.let {
-                teamMemberAdapter.updateTeamMember(it.teamMember)
-            }
+//            // Jika tim yang sesuai ditemukan, update daftar anggota tim di adapter
+//            selectedTeam?.let {
+//                teamMemberAdapter.updateTeamMember(it.teamMember)
+//            }
         })
 
         viewModel.loadingLD.observe(viewLifecycleOwner, Observer {

@@ -27,8 +27,8 @@ class TeamAdapter(val teamList: ArrayList<Team>,private val img: String?) : Recy
         holder.binding.txtTeamName.text = teamList[position].teamName
         holder.binding.cardView.setOnClickListener {
             val teamName = teamList[position].teamName
-            val id = teamList[position].id
-            val action = TeamsFragmentDirections.actionTeamMember(teamName!!,id!!,img!!)
+            val id = teamList[position].idTeam
+            val action = TeamsFragmentDirections.actionTeamMember(teamName!!,id.toString()!!,img!!)
             Navigation.findNavController(it).navigate(action)
         }
     }

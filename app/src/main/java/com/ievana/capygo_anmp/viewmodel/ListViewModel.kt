@@ -12,42 +12,55 @@ import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.ievana.capygo_anmp.util.buildDb
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 
-class ListViewModel(application: Application):AndroidViewModel(application){
-    val gamesLD = MutableLiveData<ArrayList<Game>>()
+class ListViewModel(application: Application):AndroidViewModel(application), CoroutineScope{
+    val gamesLD = MutableLiveData<List<Game>>()
     val gameLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
-    val TAG = "volleyTag"
-    private var queue: RequestQueue? = null
-    fun refresh(){
+
+    private var job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
+
+
+//    fun refresh() {
+//        loadingLD.value = true
+//        gameLoadErrorLD.value = false
+//        launch {
+//            val db = buildDb(
+//                getApplication()
+//            )
+//            gamesLD.postValue(db.gameDao().selectGame())
+//            loadingLD.postValue(false)
+//        }
+//    }
+
+    fun refresh() {
         loadingLD.value = true
         gameLoadErrorLD.value = false
+        launch {
+            // Ambil instance database dari singleton
+            val db = buildDb(getApplication())
 
-        queue = Volley.newRequestQueue(getApplication())
-        val url = "https://www.jsonkeeper.com/b/HU7W"
-
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            {
-                //success
-                val sType = object :TypeToken<List<Game>>(){ }.type
-                val result = Gson().fromJson<List<Game>>(it, sType)
-                gamesLD.value = result as ArrayList<Game>?
-                loadingLD.value = false
-                Log.d("showvoley",result.toString())
-            },{
-                Log.d("showvoley", it.toString())
-                gameLoadErrorLD.value = false
-                loadingLD.value = false
-            }
-        )
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
+            // Ambil data game dari database
+            val games = db.gameDao().selectGame()
+            gamesLD.postValue(games)
+            loadingLD.postValue(false)
+        }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        queue?.cancelAll(TAG)
+    fun clearTask(game: Game){
+        launch {
+            val db = buildDb(getApplication())
+//            db.capygoDao().deleteTodo(todo)
+//            todoLD.postValue((db.todoDao().selectAllTodo()))
+        }
     }
 }

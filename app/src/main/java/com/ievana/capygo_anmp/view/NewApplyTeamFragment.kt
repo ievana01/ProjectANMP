@@ -115,16 +115,16 @@ class NewApplyTeamFragment : Fragment() {
         })
 
 
-        viewModelTeam.membersLD.observe(viewLifecycleOwner, Observer {
-            val filteredTeams = it.filter { team -> team.gameName == selectedGame }
-
-            teamList = filteredTeams.map { team -> team.teamName }
-
-            val teamAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1,
-                teamList)
-            teamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.teamSpinner.adapter = teamAdapter
-        })
+//        viewModelTeam.membersLD.observe(viewLifecycleOwner, Observer {
+//            val filteredTeams = it.filter { team -> team.gameName == selectedGame }
+//
+//            teamList = filteredTeams.map { team -> team.teamName }
+//
+//            val teamAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1,
+//                teamList)
+//            teamAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            binding.teamSpinner.adapter = teamAdapter
+//        })
 
 
     }

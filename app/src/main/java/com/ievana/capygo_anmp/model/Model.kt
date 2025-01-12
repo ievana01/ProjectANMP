@@ -38,7 +38,7 @@ data class Proposal(
     var id_prop:Int =0
 }
 
-@Entity
+@Entity(tableName = "game")
 data class Game(
     @ColumnInfo(name="gameName")
     var name: String?,
@@ -46,37 +46,65 @@ data class Game(
     var description: String?,
     @ColumnInfo(name="image")
     var image: String?,
-    var teams: ArrayList<Team>,
-    var achievements : List<Achievement>
+//    var teams: ArrayList<Team>,
+//    var achievements : List<Achievement>
 ){
     @PrimaryKey(autoGenerate = true)
     var id:Int = 0
 }
 
+@Entity(tableName = "achivement")
 data class Achievement(
+    @ColumnInfo(name="idGame")
+    val gameId: Int,
+    @ColumnInfo(name="idTeam")
+    var winningTeam: Int?,//nama team
+
+    @ColumnInfo(name="year")
     var year: Int?,
-    var winningTeam: String?,//nama team
+
+    @ColumnInfo(name="competitionTitle")
     var competitionTitle: String? //list competition
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var idAch:Int = 0
+}
 
+@Entity(tableName = "team")
 data class Team(
-    //untuk team page dan who we are
-    var id:String,
-    var gameName:String,
-    var teamName: String,
-    var desc:String, //who we are
-    var like: Int, //who we are
-    var imageTeam: String?,
-    var teamMember:ArrayList<Member>,
-)
+    @ColumnInfo(name="idGame")
+    var gameId: Int,
 
-data class Member(
-    // untuk team page detail
-    var id:String,
-    var memberName: String,
-    var role: String,
-    var memberImage: String?
+    @ColumnInfo(name="teamName")
+    var teamName: String,
+    @ColumnInfo(name="description")
+    var desc:String, //who we are
+    @ColumnInfo(name="like")
+    var like: Int, //who we are
+    @ColumnInfo(name="imageTeam")
+    var imageTeam: String?,
+//    var teamMember:ArrayList<Member>,
 )
+{
+    @PrimaryKey(autoGenerate = true)
+    var idTeam:Int = 0
+}
+
+@Entity(tableName = "member")
+data class Member(
+    @ColumnInfo(name="idTeam")
+    var teamId: Int,
+
+    @ColumnInfo(name="memberName")
+    var memberName: String,
+    @ColumnInfo(name="role")
+    var role: String,
+    @ColumnInfo(name="memberImage")
+    var memberImage: String?
+){
+    @PrimaryKey(autoGenerate = true)
+    var idMember: Int=0
+}
 
 data class Schedule(
     var id: String,

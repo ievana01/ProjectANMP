@@ -41,56 +41,56 @@ class AchievementFragment : Fragment() {
         binding.txtGameName.text = gameName
         Picasso.get().load(img).into(binding.gameImage)
 
-        viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
-        viewModel.refresh(gameName ?: "", "")
-
-        binding.yearSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                if (isSpinnerInitialized) {
-                    if (position >= 0) {
-                        selectedYear = binding.yearSpinner.selectedItem.toString()
-                        viewModel.refresh(gameName, selectedYear)
-                    } else {
-                        viewModel.refresh(gameName, "")
-                    }
-                } else {
-                    isSpinnerInitialized = true
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-
-                Log.d("achievement", "Tidak ada tahun yang dipilih")
-            }
-        }
-        binding.recView.layoutManager = LinearLayoutManager(context)
-        binding.recView.adapter = achievementListAdapter
-
-        observeViewModel()
+//        viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
+//        viewModel.refresh(gameName ?: "", "")
+//
+//        binding.yearSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+//                if (isSpinnerInitialized) {
+//                    if (position >= 0) {
+//                        selectedYear = binding.yearSpinner.selectedItem.toString()
+//                        viewModel.refresh(gameName, selectedYear)
+//                    } else {
+//                        viewModel.refresh(gameName, "")
+//                    }
+//                } else {
+//                    isSpinnerInitialized = true
+//                }
+//            }
+//
+//            override fun onNothingSelected(parent: AdapterView<*>) {
+//
+//                Log.d("achievement", "Tidak ada tahun yang dipilih")
+//            }
+//        }
+//        binding.recView.layoutManager = LinearLayoutManager(context)
+//        binding.recView.adapter = achievementListAdapter
+//
+//        observeViewModel()
     }
 
     fun observeViewModel() {
-        viewModel.achievesLD.observe(viewLifecycleOwner, Observer {
-
-            yearsList = it.map { achievement -> achievement.year.toString() }
-
-            if(!isSpinnerInitialized){
-                val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1,
-                    yearsList)
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                binding.yearSpinner.adapter = adapter
-            }
-
-            achievementListAdapter.updateAchievement(it)
-        })
-
-        viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
-            if(it == true) {
-                binding.recView.visibility = View.GONE
-            } else {
-                binding.recView.visibility = View.VISIBLE
-            }
-        })
+//        viewModel.achievesLD.observe(viewLifecycleOwner, Observer {
+//
+//            yearsList = it.map { achievement -> achievement.year.toString() }
+//
+//            if(!isSpinnerInitialized){
+//                val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1,
+//                    yearsList)
+//                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//                binding.yearSpinner.adapter = adapter
+//            }
+//
+//            achievementListAdapter.updateAchievement(it)
+//        })
+//
+//        viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
+//            if(it == true) {
+//                binding.recView.visibility = View.GONE
+//            } else {
+//                binding.recView.visibility = View.VISIBLE
+//            }
+//        })
     }
 
 }

@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.ievana.capygo_anmp.R
 import com.ievana.capygo_anmp.databinding.CapygoListItemBinding
 import com.ievana.capygo_anmp.model.Game
 import com.squareup.picasso.Picasso
@@ -42,7 +41,7 @@ class GameListAdapter(val gameList: ArrayList<Game>) : RecyclerView.Adapter<Game
         }
     }
 
-    fun updateGameList(newGame : ArrayList<Game>){
+    fun updateGameList(newGame: List<Game>){
         gameList.clear()
         gameList.addAll(newGame)
         notifyDataSetChanged()
