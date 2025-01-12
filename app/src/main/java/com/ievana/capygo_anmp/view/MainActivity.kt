@@ -29,16 +29,11 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.menu.findItem(R.id.itemSignOut)?.isVisible = false
 
         binding.bottomNav.setupWithNavController(navController)
-        binding.navView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
+        val signout = binding.navView.menu.findItem(R.id.itemSignOut)
 
-                R.id.itemSignOut -> {
-                    // Handle Profile item
-                    logout()
-                    true
-                }
-                else -> false
-            }
+        signout.setOnMenuItemClickListener {
+            logout()
+            true
         }
 
     }
