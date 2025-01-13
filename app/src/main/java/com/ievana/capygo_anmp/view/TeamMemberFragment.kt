@@ -12,15 +12,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ievana.capygo_anmp.R
 import com.ievana.capygo_anmp.databinding.FragmentTeamMemberBinding
 import com.ievana.capygo_anmp.databinding.FragmentTeamsBinding
+import com.ievana.capygo_anmp.model.Member
+import com.ievana.capygo_anmp.viewmodel.DetailMemberViewModel
 import com.ievana.capygo_anmp.viewmodel.MemberViewModel
 import com.squareup.picasso.Picasso
 
 class TeamMemberFragment : Fragment() {
     private lateinit var binding: FragmentTeamMemberBinding
-    private lateinit var viewModel: MemberViewModel
+    private lateinit var viewModel: DetailMemberViewModel
     private val teamMemberAdapter = TeamMemberAdapter(arrayListOf())
-    private var teamID: String? = null
-    private var image: String? = null
+    //    private var teamID: String? = null
+//    private var image: String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,32 +33,38 @@ class TeamMemberFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
+        super.onViewCreated(view, savedInstanceState)
 //        val teamName = TeamMemberFragmentArgs.fromBundle(requireArguments()).teamName
-//        teamID = TeamMemberFragmentArgs.fromBundle(requireArguments()).id
-//
+        val id = TeamMemberFragmentArgs.fromBundle(requireArguments()).id
+
 //        image = TeamMemberFragmentArgs.fromBundle(requireArguments()).image
 //        Picasso.get().load(image).into(binding.imgGame)
 //
 //        binding.textView.text = teamName
-//        viewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
-//        viewModel.refresh("")
-//
-//        binding.recViewTeamMember.layoutManager = LinearLayoutManager(context)
-//        binding.recViewTeamMember.adapter = teamMemberAdapter
-//
-//        observeViewModel()
+        viewModel = ViewModelProvider(this).get(DetailMemberViewModel::class.java)
+        viewModel.fetchMember(id)
+
+        binding.recViewTeamMember.layoutManager = LinearLayoutManager(context)
+        binding.recViewTeamMember.adapter = teamMemberAdapter
+
+        observeViewModel()
     }
 
     fun observeViewModel(){
-        viewModel.membersLD.observe(viewLifecycleOwner, Observer { teams ->
-            // Mengambil tim yang sesuai dengan teamID
-            val selectedTeam = teams.find { it.idMember.toString() == teamID }
+//        viewModel.detailMemberLD.observe(viewLifecycleOwner, Observer { teams ->
+//            // Mengambil tim yang sesuai dengan teamID
+//            val selectedTeam = teams.find { it.idMember.toString() == teamID }
+//
+////            // Jika tim yang sesuai ditemukan, update daftar anggota tim di adapter
+////            selectedTeam?.let {
+////                teamMemberAdapter.updateTeamMember(it.teamMember)
+////            }
+//        })
 
-//            // Jika tim yang sesuai ditemukan, update daftar anggota tim di adapter
-//            selectedTeam?.let {
-//                teamMemberAdapter.updateTeamMember(it.teamMember)
-//            }
+        viewModel.detailMemberLD.observe(viewLifecycleOwner, Observer { members ->
+            members?.let {
+                teamMemberAdapter.updateTeamMember(it as ArrayList<Member>)
+            }
         })
 
         viewModel.loadingLD.observe(viewLifecycleOwner, Observer {

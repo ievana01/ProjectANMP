@@ -1,6 +1,5 @@
 package com.ievana.capygo_anmp.view
 
-import android.R
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
@@ -9,6 +8,7 @@ import android.widget.Spinner
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
+import android.R
 
 @BindingAdapter("android:imageUrl")
 fun loadPhotoURL(imageView: ImageView, url:String) {

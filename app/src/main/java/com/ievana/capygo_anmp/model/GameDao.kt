@@ -16,8 +16,7 @@ interface GameDao {
     fun selectTeam(): List<Team>
 
     @Query("SELECT * FROM team_game INNER JOIN team ON team_game.idTeam = team.idTeam WHERE idGame = :idGame")
-    fun getTeam(idGame: Int): List<TeamGame>
-
+    fun getTeam(idGame: Int): List<Team>
 
     @Query("SELECT * FROM member INNER JOIN team_game ON team_game.idTeam = member.idTeam WHERE idGame=:idGame")
     fun getMember(idGame: Int): List<Member>
