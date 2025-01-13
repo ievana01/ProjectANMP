@@ -38,10 +38,10 @@ class TesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val name = AchievementFragmentArgs.fromBundle(requireArguments()).name
+        val idGame = AchievementFragmentArgs.fromBundle(requireArguments()).idGame
 
 
-        binding.txtNamaGame.text = name
+        binding.txtNamaGame.text = idGame.toString()
 
 
     }

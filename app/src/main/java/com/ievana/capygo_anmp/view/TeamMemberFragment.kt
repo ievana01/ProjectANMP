@@ -31,27 +31,27 @@ class TeamMemberFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val teamName = TeamMemberFragmentArgs.fromBundle(requireArguments()).teamName
-        teamID = TeamMemberFragmentArgs.fromBundle(requireArguments()).id
-
-        image = TeamMemberFragmentArgs.fromBundle(requireArguments()).image
-        Picasso.get().load(image).into(binding.imgGame)
-
-        binding.textView.text = teamName
-        viewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
-        viewModel.refresh("")
-
-        binding.recViewTeamMember.layoutManager = LinearLayoutManager(context)
-        binding.recViewTeamMember.adapter = teamMemberAdapter
-
-        observeViewModel()
+//        super.onViewCreated(view, savedInstanceState)
+//        val teamName = TeamMemberFragmentArgs.fromBundle(requireArguments()).teamName
+//        teamID = TeamMemberFragmentArgs.fromBundle(requireArguments()).id
+//
+//        image = TeamMemberFragmentArgs.fromBundle(requireArguments()).image
+//        Picasso.get().load(image).into(binding.imgGame)
+//
+//        binding.textView.text = teamName
+//        viewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
+//        viewModel.refresh("")
+//
+//        binding.recViewTeamMember.layoutManager = LinearLayoutManager(context)
+//        binding.recViewTeamMember.adapter = teamMemberAdapter
+//
+//        observeViewModel()
     }
 
     fun observeViewModel(){
         viewModel.membersLD.observe(viewLifecycleOwner, Observer { teams ->
             // Mengambil tim yang sesuai dengan teamID
-            val selectedTeam = teams.find { it.idTeam.toString() == teamID }
+            val selectedTeam = teams.find { it.idMember.toString() == teamID }
 
 //            // Jika tim yang sesuai ditemukan, update daftar anggota tim di adapter
 //            selectedTeam?.let {

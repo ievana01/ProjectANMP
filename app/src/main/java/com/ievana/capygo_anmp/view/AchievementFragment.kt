@@ -23,7 +23,7 @@ class AchievementFragment : Fragment() {
     private var achievementListAdapter = AchievementAdapter(arrayListOf() )
     private var selectedYear:String=""
     private lateinit var yearsList:List<String>
-    private var gameName:String=""
+   
     private var isSpinnerInitialized = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +36,8 @@ class AchievementFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
-        gameName = AchievementFragmentArgs.fromBundle(requireArguments()).name
-        viewModel.refresh(gameName)
+        val gameId = AchievementFragmentArgs.fromBundle(requireArguments()).idGame
+        viewModel.refresh(gameId)
         binding.recView.layoutManager = LinearLayoutManager(context)
         binding.recView.adapter = achievementListAdapter
 
@@ -47,29 +47,29 @@ class AchievementFragment : Fragment() {
 //        val img = AchievementFragmentArgs.fromBundle(requireArguments()).image
 //        binding.txtGameName.text = gameName
 //        Picasso.get().load(img).into(binding.gameImage)
-
+//
 //        viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
 //        viewModel.refresh(gameName ?: "", "")
 //
-//        binding.yearSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-//                if (isSpinnerInitialized) {
-//                    if (position >= 0) {
-//                        selectedYear = binding.yearSpinner.selectedItem.toString()
-//                        viewModel.refresh(gameName, selectedYear)
-//                    } else {
-//                        viewModel.refresh(gameName, "")
-//                    }
-//                } else {
-//                    isSpinnerInitialized = true
-//                }
-//            }
-//
-//            override fun onNothingSelected(parent: AdapterView<*>) {
-//
-//                Log.d("achievement", "Tidak ada tahun yang dipilih")
-//            }
-//        }
+        binding.yearSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                if (isSpinnerInitialized) {
+                    if (position >= 0) {
+                        selectedYear = binding.yearSpinner.selectedItem.toString()
+                        viewModel.refreshSelectYear(gameId, selectedYear)
+                    } else {
+                        viewModel.refreshSelectYear(gameId, "")
+                    }
+                } else {
+                    isSpinnerInitialized = true
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+
+                Log.d("achievement", "Tidak ada tahun yang dipilih")
+            }
+        }
 //        binding.recView.layoutManager = LinearLayoutManager(context)
 //        binding.recView.adapter = achievementListAdapter
 //
@@ -77,19 +77,19 @@ class AchievementFragment : Fragment() {
     }
 
     fun observeViewModel() {
-//        viewModel.achievesLD.observe(viewLifecycleOwner, Observer {
-//
-//            yearsList = it.map { achievement -> achievement.year.toString() }
-//
-//            if(!isSpinnerInitialized){
-//                val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1,
-//                    yearsList)
-//                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//                binding.yearSpinner.adapter = adapter
-//            }
-//
-//            achievementListAdapter.updateAchievement(it)
-//        })
+        viewModel.achievesLD.observe(viewLifecycleOwner, Observer {
+
+            yearsList = it.map { achievement -> achievement.year.toString() }
+
+            if(!isSpinnerInitialized){
+                val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1,
+                    yearsList)
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                binding.yearSpinner.adapter = adapter
+            }
+
+            achievementListAdapter.updateAchievement(it)
+        })
 
 
         viewModel.achievesLD.observe(viewLifecycleOwner, Observer {
@@ -100,6 +100,7 @@ class AchievementFragment : Fragment() {
 
         viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
             if(it == true) {
+
                 binding.recView.visibility = View.GONE
             } else {
                 binding.recView.visibility = View.VISIBLE

@@ -27,14 +27,26 @@ class AchievementViewModel(application: Application):AndroidViewModel(applicatio
     val loadingLD = MutableLiveData<Boolean>()
     val job = Job()
 
-    fun refresh(name:String){
+    fun refresh(idGame:Int){
         loadingLD.value = true
         achievesLoadErrorLD.value = false
         launch {
             val db = buildDb(getApplication())
-            val ach = db.gameDao().getAch(name)
+            val ach = db.gameDao().getAch(idGame)
             achievesLD.postValue(ach)
             Log.d("AchViewModel", "Ach:${ach}")
+            loadingLD.postValue(false)
+        }
+    }
+
+    fun refreshSelectYear(idGame:Int, selectedYear:String){
+        loadingLD.value = true
+        achievesLoadErrorLD.value = false
+        launch {
+            val db = buildDb(getApplication())
+            val ach = db.gameDao().getAchYear(idGame,selectedYear)
+            achievesLD.postValue(ach)
+            Log.d("AchViewModel", "Ach Selected Year:${ach}")
             loadingLD.postValue(false)
         }
     }

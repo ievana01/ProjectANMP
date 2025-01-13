@@ -40,7 +40,7 @@ class GameListAdapter(val gameList: ArrayList<Game>) : RecyclerView.Adapter<Game
 //        }
 //        holder.binding.btnAchivement.setOnClickListener{
 //
-//            val action = MainFragmentDirections.actionAchievementFragment(name!!, img!!)
+//            val action = MainFragmentDirections.actionAchievementFragment()
 //            Navigation.findNavController(it).navigate(action)
 //        }
     }
@@ -52,14 +52,14 @@ class GameListAdapter(val gameList: ArrayList<Game>) : RecyclerView.Adapter<Game
     }
 
     override fun teamClick(v: View) {
-        val image = v.tag.toString()
-        val action = MainFragmentDirections.actionTeamsFragment(image)
+        val idGame = v.tag.toString().toInt()
+        val action = MainFragmentDirections.actionTeamsFragment(idGame)
         Navigation.findNavController(v).navigate(action)
     }
 
     override fun achieveClick(v: View) {
-        val name = v.tag.toString()
-        val action = MainFragmentDirections.actionAchievementFragment(name)
+        val id = v.tag.toString().toInt()
+        val action = MainFragmentDirections.actionAchievementFragment(id)
         Navigation.findNavController(v).navigate(action)
     }
 

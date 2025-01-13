@@ -50,30 +50,30 @@ class NewApplyTeamFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
         viewModel.refresh()
 
-        viewModelTeam = ViewModelProvider(this).get(MemberViewModel::class.java)
-        viewModelTeam.refresh("")
-
-        viewModelProp = ViewModelProvider(this).get(ProposalViewModel::class.java)
-
-        binding.gameSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                if (isSpinnerInitialized) {
-                    if (position >= 0) {
-                        selectedGame = binding.gameSpinner.selectedItem.toString()
-                        viewModel.refresh()
-                        Log.d("game", "Game yang dipilih: $selectedGame")
-                        viewModelTeam.refresh(selectedGame)
-                    } else {
-                        viewModel.refresh()
-                    }
-                } else {
-                    isSpinnerInitialized = true
-                }
-            }
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                Log.d("game", "Tidak ada game yang dipilih")
-            }
-        }
+//        viewModelTeam = ViewModelProvider(this).get(MemberViewModel::class.java)
+//        viewModelTeam.refresh("")
+//
+//        viewModelProp = ViewModelProvider(this).get(ProposalViewModel::class.java)
+//
+//        binding.gameSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+//                if (isSpinnerInitialized) {
+//                    if (position >= 0) {
+//                        selectedGame = binding.gameSpinner.selectedItem.toString()
+//                        viewModel.refresh()
+//                        Log.d("game", "Game yang dipilih: $selectedGame")
+//                        viewModelTeam.refresh(selectedGame)
+//                    } else {
+//                        viewModel.refresh()
+//                    }
+//                } else {
+//                    isSpinnerInitialized = true
+//                }
+//            }
+//            override fun onNothingSelected(parent: AdapterView<*>) {
+//                Log.d("game", "Tidak ada game yang dipilih")
+//            }
+//        }
         
         binding.teamSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {

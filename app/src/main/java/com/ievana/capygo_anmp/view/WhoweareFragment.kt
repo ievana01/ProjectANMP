@@ -40,14 +40,14 @@ class WhoweareFragment : Fragment() , LikeTeamClickListener{
             binding.recViewWhoWeAre.visibility = View.GONE
             binding.txtErrorWhoWeAre.visibility = View.GONE
             binding.progressBar.visibility = View.VISIBLE
-            viewModel.refresh("")
+            viewModel.refresh(0)
             binding.refreshLayout.isRefreshing = false
         }
         observeViewModel()
     }
 
     fun observeViewModel(){
-        viewModel.membersLD.observe(viewLifecycleOwner, Observer {
+        viewModel.teamLD.observe(viewLifecycleOwner, Observer {
             memberListAdapter.updateMemberList(it)
         })
 

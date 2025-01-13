@@ -72,9 +72,6 @@ data class Achievement(
 
 @Entity(tableName = "team")
 data class Team(
-    @ColumnInfo(name="idGame")
-    var gameId: Int,
-
     @ColumnInfo(name="teamName")
     var teamName: String,
     @ColumnInfo(name="description")
@@ -89,6 +86,21 @@ data class Team(
     @PrimaryKey(autoGenerate = true)
     var idTeam:Int = 0
 }
+
+@Entity(tableName = "team_game")
+data class TeamGame(
+    @ColumnInfo(name = "idTeam")
+    var idTeam: Int,  // ID tim dari tabel 'team'
+
+    @ColumnInfo(name = "idGame")
+    var idGame: Int,  // ID game dari tabel 'game'
+){
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+}
+
+
+
 
 @Entity(tableName = "member")
 data class Member(
