@@ -55,8 +55,14 @@
         android:label="Teams"
         tools:layout="@layout/fragment_team_member">
         <argument
+            android:name="teamName"
+            app:argType="string" />
+        <argument
             android:name="id"
-            app:argType="integer" />
+            app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/achievementFragment"

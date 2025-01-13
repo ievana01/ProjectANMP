@@ -20,7 +20,6 @@ class TeamMemberAdapter(val teamMemberList: ArrayList<Member>) : RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: TeamMemberViewHolder, position: Int) {
-        holder.binding.member = teamMemberList[position]
 //        holder.binding.team = teamMemberList[position]
 //        holder.binding.txtRole.text = teamMemberList[position].role
 //        holder.binding.txtMemberName.text = teamMemberList[position].memberName

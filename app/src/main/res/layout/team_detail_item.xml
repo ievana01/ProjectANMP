@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="member"
-            type="com.ievana.capygo_anmp.model.Member" />
+<!--        <variable-->
+<!--            name="team"-->
+<!--            type="com.ievana.capygo_anmp.view.Member" />-->
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,7 +35,6 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:imageUrl="@{member.memberImage}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +47,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/abhaya_libre_medium"
-                    android:text="@{member.memberName}"
+                    android:text="Nama"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -61,7 +60,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/abhaya_libre_medium"
-                    android:text="@{member.role}"
+                    android:text="Role"
                     android:textSize="24sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
                     app:layout_constraintTop_toBottomOf="@+id/txtMemberName" />
