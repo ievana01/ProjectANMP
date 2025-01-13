@@ -1,6 +1,7 @@
 package com.ievana.capygo_anmp.view
 
 import android.view.View
+import com.ievana.capygo_anmp.model.Team
 
 interface ButtonClickListener{
     fun onButtonClick(v:View)
@@ -11,4 +12,7 @@ interface TeamClickListerner{
 
 interface AchieveClickListerner{
     fun achieveClick(v: View)
+}
+interface LikeTeamClickListener{
+    fun likeTeamClick(team:Team)
 }

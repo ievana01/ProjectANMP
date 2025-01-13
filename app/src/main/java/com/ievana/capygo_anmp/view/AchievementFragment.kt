@@ -35,10 +35,17 @@ class AchievementFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
         gameName = AchievementFragmentArgs.fromBundle(requireArguments()).name
+        viewModel.refresh(gameName)
+        binding.recView.layoutManager = LinearLayoutManager(context)
+        binding.recView.adapter = achievementListAdapter
+
+        observeViewModel()
+
+
 //        val img = AchievementFragmentArgs.fromBundle(requireArguments()).image
-        binding.txtGameName.text = gameName
+//        binding.txtGameName.text = gameName
 //        Picasso.get().load(img).into(binding.gameImage)
 
 //        viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
@@ -83,14 +90,21 @@ class AchievementFragment : Fragment() {
 //
 //            achievementListAdapter.updateAchievement(it)
 //        })
-//
-//        viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
-//            if(it == true) {
-//                binding.recView.visibility = View.GONE
-//            } else {
-//                binding.recView.visibility = View.VISIBLE
-//            }
-//        })
+
+
+        viewModel.achievesLD.observe(viewLifecycleOwner, Observer {
+            Log.e("ach frag", " data is null")
+            achievementListAdapter.updateAchievement(it)
+        })
+
+
+        viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
+            if(it == true) {
+                binding.recView.visibility = View.GONE
+            } else {
+                binding.recView.visibility = View.VISIBLE
+            }
+        })
     }
 
 }

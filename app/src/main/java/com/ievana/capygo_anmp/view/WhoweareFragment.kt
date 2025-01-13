@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ievana.capygo_anmp.R
 import com.ievana.capygo_anmp.databinding.FragmentMainBinding
 import com.ievana.capygo_anmp.databinding.FragmentWhoweareBinding
+import com.ievana.capygo_anmp.model.Team
 import com.ievana.capygo_anmp.viewmodel.MemberViewModel
 
-class WhoweareFragment : Fragment() {
+class WhoweareFragment : Fragment() , LikeTeamClickListener{
 
     private lateinit var binding: FragmentWhoweareBinding
     private lateinit var viewModel: MemberViewModel
-    private val memberListAdapter = MemberListAdapter(arrayListOf())
+    private val memberListAdapter = MemberListAdapter(arrayListOf(), this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,5 +68,12 @@ class WhoweareFragment : Fragment() {
                 binding.progressBar.visibility = View.GONE
             }
         })
+    }
+
+    override fun likeTeamClick(team: Team) {
+        val updateLike = team.like + 1
+        viewModel.updateTeamLike(updateLike, team.idTeam)
+        team.like = updateLike
+        memberListAdapter.notifyDataSetChanged()
     }
 }

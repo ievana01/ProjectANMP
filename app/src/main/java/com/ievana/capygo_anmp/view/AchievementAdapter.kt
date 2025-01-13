@@ -19,17 +19,19 @@ class AchievementAdapter(val achievementList: ArrayList<Achievement>):RecyclerVi
     }
 
     override fun onBindViewHolder(holder: AchievementAdapter.AchievementViewHolder, position: Int) {
-            holder.binding.txtNumber.text = "${(position + 1).toString()}."
-            holder.binding.txtACName.text = "- ${achievementList[position].winningTeam}"
-            holder.binding.txtACAchiv.text =
-                achievementList[position].competitionTitle
+//            holder.binding.txtNumber.text = "${(position + 1).toString()}."
+//            holder.binding.txtACName.text = "- ${achievementList[position].winningTeam}"
+//            holder.binding.txtACAchiv.text =
+//                achievementList[position].competitionTitle
+        holder.binding.ach = achievementList[position]
+
     }
 
     override fun getItemCount(): Int {
         return achievementList.size
     }
 
-    fun updateAchievement(newAchievement: ArrayList<Achievement>){
+    fun updateAchievement(newAchievement: List<Achievement>){
         achievementList.clear()
         achievementList.addAll(newAchievement)
         notifyDataSetChanged()

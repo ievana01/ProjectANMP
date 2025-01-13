@@ -13,12 +13,31 @@ import com.google.gson.reflect.TypeToken
 import com.ievana.capygo_anmp.model.Achievement
 import com.ievana.capygo_anmp.model.Game
 import com.ievana.capygo_anmp.model.Team
+import com.ievana.capygo_anmp.util.buildDb
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.time.Year
+import kotlin.coroutines.CoroutineContext
 
-class AchievementViewModel(application: Application):AndroidViewModel(application) {
-//    val achievesLD = MutableLiveData<ArrayList<Achievement>>()
-//    val achievesLoadErrorLD = MutableLiveData<Boolean>()
-//    val loadingLD = MutableLiveData<Boolean>()
+class AchievementViewModel(application: Application):AndroidViewModel(application), CoroutineScope {
+    val achievesLD = MutableLiveData<List<Achievement>>()
+    val achievesLoadErrorLD = MutableLiveData<Boolean>()
+    val loadingLD = MutableLiveData<Boolean>()
+    val job = Job()
+
+    fun refresh(name:String){
+        loadingLD.value = true
+        achievesLoadErrorLD.value = false
+        launch {
+            val db = buildDb(getApplication())
+            val ach = db.gameDao().getAch(name)
+            achievesLD.postValue(ach)
+            Log.d("AchViewModel", "Ach:${ach}")
+            loadingLD.postValue(false)
+        }
+    }
 //    val TAG = "volleyTag"
 //    private var queue: RequestQueue? = null
 //    fun refresh(gameName: String, yearAch: String) {
@@ -66,4 +85,6 @@ class AchievementViewModel(application: Application):AndroidViewModel(applicatio
 //        stringRequest.tag = TAG
 //        queue?.add(stringRequest)
 //    }
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
 }

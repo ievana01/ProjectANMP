@@ -7,7 +7,7 @@ import com.ievana.capygo_anmp.databinding.MemberListItemBinding
 import com.ievana.capygo_anmp.model.Team
 import com.squareup.picasso.Picasso
 
-class MemberListAdapter(val memberList:ArrayList<Team>):RecyclerView.Adapter<MemberListAdapter.MemberViewHolder>(){
+class MemberListAdapter(val memberList:ArrayList<Team>, var listener: LikeTeamClickListener):RecyclerView.Adapter<MemberListAdapter.MemberViewHolder>(){
     class MemberViewHolder(var binding : MemberListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemberViewHolder {
@@ -21,6 +21,7 @@ class MemberListAdapter(val memberList:ArrayList<Team>):RecyclerView.Adapter<Mem
 
     override fun onBindViewHolder(holder: MemberViewHolder, position: Int) {
         holder.binding.team = memberList[position]
+        holder.binding.listener = listener
 //        holder.binding.txtName.text = memberList[position].teamName
 //        holder.binding.txtDesc.text = memberList[position].desc
 //        holder.binding.btnLike.text = memberList[position].like.toString()

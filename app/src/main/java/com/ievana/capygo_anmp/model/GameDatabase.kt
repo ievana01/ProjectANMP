@@ -34,12 +34,17 @@ abstract class GameDatabase: RoomDatabase() {
                 })
                 .build()
 
-        operator fun invoke(context: Context) {
-            if (instance == null) {
-                synchronized(LOCK) {
-                    instance ?: buildDatabase(context).also {
-                        instance = it
-                    }
+        operator fun invoke(context: Context):GameDatabase {
+//            if (instance == null) {
+//                synchronized(LOCK) {
+//                    instance ?: buildDatabase(context).also {
+//                        instance = it
+//                    }
+//                }
+//            }
+            return instance ?: synchronized(LOCK) {
+                instance ?: buildDatabase(context).also {
+                    instance = it
                 }
             }
         }

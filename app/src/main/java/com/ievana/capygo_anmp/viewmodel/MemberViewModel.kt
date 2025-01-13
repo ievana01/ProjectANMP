@@ -5,7 +5,9 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.ievana.capygo_anmp.model.Game
+import com.ievana.capygo_anmp.model.GameDatabase
 import com.ievana.capygo_anmp.model.Member
 import com.ievana.capygo_anmp.model.Team
 import com.ievana.capygo_anmp.util.buildDb
@@ -35,10 +37,26 @@ class MemberViewModel(application: Application):AndroidViewModel(application), C
         }
     }
 
+    private val dao = GameDatabase.invoke(application).gameDao()
+    fun updateTeamLike(newLike:Int, idTeam:Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            dao.updateLikeTeam(newLike, idTeam)
+        }
+    }
+
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
     fun refresh(gameName:String){
+        memberLoadErrorLD.value = false
+        loadingLD.value=true
+        launch {
+            val db = buildDb(getApplication())
+            val member = db.gameDao().getTeam(gameName)
+            membersLD.postValue(member)
+            Log.d("MemberViewModel", "Teams: ${member}")
+            loadingLD.postValue(false)
+        }
 
 //        membersLD.value =
 //            arrayListOf(
@@ -108,8 +126,8 @@ class MemberViewModel(application: Application):AndroidViewModel(application), C
 //            )
 //        )
 
-        memberLoadErrorLD.value = false
-        loadingLD.value = false
+//        memberLoadErrorLD.value = false
+//        loadingLD.value = false
 
     }
 }

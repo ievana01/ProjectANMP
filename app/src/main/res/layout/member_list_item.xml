@@ -7,6 +7,9 @@
         <variable
             name="team"
             type="com.ievana.capygo_anmp.model.Team" />
+        <variable
+            name="listener"
+            type="com.ievana.capygo_anmp.view.LikeTeamClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,6 +40,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="15dp"
                     android:text="@{String.valueOf(team.like)}"
+                    android:onClick="@{()->listener.likeTeamClick(team)}"
                     app:icon="@drawable/baseline_thumb_up_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
