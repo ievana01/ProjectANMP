@@ -16,3 +16,10 @@ interface AchieveClickListerner{
 interface LikeTeamClickListener{
     fun likeTeamClick(team:Team)
 }
+interface SignUpClickListener{
+    fun signUpClick(v: View)
+}
+
+interface DetailTeamClickListener{
+    fun detailTeamClick(v:View)
+}
