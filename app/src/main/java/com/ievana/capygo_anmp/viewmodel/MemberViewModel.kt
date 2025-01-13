@@ -25,6 +25,7 @@ class MemberViewModel(application: Application):AndroidViewModel(application), C
     val loadingLD = MutableLiveData<Boolean>()
     private var job = Job()
 
+    //who we are
     fun fetchTeam(){
         memberLoadErrorLD.value = false
         loadingLD.value = true
@@ -44,19 +45,32 @@ class MemberViewModel(application: Application):AndroidViewModel(application), C
         }
     }
 
+//    fun fetchMember(id : Int){
+//        memberLoadErrorLD.value=false
+//        loadingLD.value=true
+//        launch {
+//            val db= buildDb(getApplication())
+//            val member = db.gameDao().getMember(id)
+//            membersLD.postValue(member)
+//            Log.d("DetailMemberViewModel", "Teams: ${member}")
+//            loadingLD.postValue(false)
+//        }
+//    }
+
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
-    fun refresh(gameName:String){
+    fun refresh(idGame:Int){
         memberLoadErrorLD.value = false
         loadingLD.value=true
         launch {
             val db = buildDb(getApplication())
-            val member = db.gameDao().getTeam(gameName)
+            val member = db.gameDao().getTeam(idGame)
             membersLD.postValue(member)
             Log.d("MemberViewModel", "Teams: ${member}")
             loadingLD.postValue(false)
         }
+
 
 //        membersLD.value =
 //            arrayListOf(

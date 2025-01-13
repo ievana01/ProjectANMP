@@ -52,8 +52,8 @@ class GameListAdapter(val gameList: ArrayList<Game>) : RecyclerView.Adapter<Game
     }
 
     override fun teamClick(v: View) {
-        val image = v.tag.toString()
-        val action = MainFragmentDirections.actionTeamsFragment(image)
+        val id = v.tag.toString().toInt()
+        val action = MainFragmentDirections.actionTeamsFragment(id)
         Navigation.findNavController(v).navigate(action)
     }
 

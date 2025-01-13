@@ -46,8 +46,8 @@
             android:id="@+id/actionTeamMember"
             app:destination="@id/teamMemberFragment" />
         <argument
-            android:name="image"
-            app:argType="string" />
+            android:name="idGame"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/teamMemberFragment"
@@ -55,14 +55,8 @@
         android:label="Teams"
         tools:layout="@layout/fragment_team_member">
         <argument
-            android:name="teamName"
-            app:argType="string" />
-        <argument
             android:name="id"
-            app:argType="string" />
-        <argument
-            android:name="image"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/achievementFragment"

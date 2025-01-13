@@ -79,9 +79,17 @@ class LoginFragment : Fragment() {
 
         }
 
-        binding.btnSignUp.setOnClickListener{
-            val action = LoginFragmentDirections.actionSignUp()
-            Navigation.findNavController(it).navigate(action)
+//        binding.btnSignUp.setOnClickListener{
+//            val action = LoginFragmentDirections.actionSignUp()
+//            Navigation.findNavController(it).navigate(action)
+//        }
+
+        binding.signUpListener = object : SignUpClickListener {
+            override fun signUpClick(v: View) {
+                val action = LoginFragmentDirections.actionSignUp()
+                Navigation.findNavController(v).navigate(action)
+            }
         }
+
     }
 }

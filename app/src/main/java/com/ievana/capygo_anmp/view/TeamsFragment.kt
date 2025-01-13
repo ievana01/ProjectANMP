@@ -28,14 +28,13 @@ class TeamsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val img = TeamsFragmentArgs.fromBundle(requireArguments()).image
+        val idGame = TeamsFragmentArgs.fromBundle(requireArguments()).idGame
 
-        Picasso.get().load(img).into(binding.imgTeam)
-
-        memberListAdapter = TeamAdapter(arrayListOf(), img)
+//        Picasso.get().load(img).into(binding.imgTeam)
+//
+//        memberListAdapter = TeamAdapter(arrayListOf(), img)
         viewModel = ViewModelProvider(this).get(MemberViewModel::class.java)
-        viewModel.refresh("")
-
+        viewModel.refresh(idGame)
         binding.recViewTeams.layoutManager = LinearLayoutManager(context)
         binding.recViewTeams.adapter = memberListAdapter
 
@@ -44,7 +43,7 @@ class TeamsFragment : Fragment() {
 
     fun observeViewModel(){
         viewModel.membersLD.observe(viewLifecycleOwner, Observer {
-//            memberListAdapter.updateTeam(it)
+            memberListAdapter.updateTeam(it)
         })
 
         viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
