@@ -24,6 +24,7 @@ class AchievementAdapter(val achievementList: ArrayList<Achievement>):RecyclerVi
 //            holder.binding.txtACAchiv.text =
 //                achievementList[position].competitionTitle
         holder.binding.ach = achievementList[position]
+        holder.binding.txtNumber.text = "${(position + 1).toString()}."
 
     }
 

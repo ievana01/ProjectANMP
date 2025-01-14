@@ -23,6 +23,7 @@ import kotlin.coroutines.CoroutineContext
 
 class AchievementViewModel(application: Application):AndroidViewModel(application), CoroutineScope {
     val achievesLD = MutableLiveData<List<Achievement>>()
+    val imgLD = MutableLiveData<List<String>>()
     val achievesLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
     val job = Job()
@@ -47,6 +48,20 @@ class AchievementViewModel(application: Application):AndroidViewModel(applicatio
             val ach = db.gameDao().getAchYear(idGame,selectedYear)
             achievesLD.postValue(ach)
             Log.d("AchViewModel", "Ach Selected Year:${ach}")
+            loadingLD.postValue(false)
+        }
+    }
+
+    fun fetchImg(idGame : Int){
+        achievesLoadErrorLD.value=false
+        loadingLD.value=true
+        launch {
+            val db= buildDb(getApplication())
+            val game = db.gameDao().getImage(idGame)
+            val imageList = game.map { it.image } // Ambil hanya properti `image` dari setiap Game
+            imgLD.postValue(imageList as List<String>?) // Simpan daftar URL gambar ke LiveData
+            Log.d("imgach", "Gambar: $imageList")
+
             loadingLD.postValue(false)
         }
     }

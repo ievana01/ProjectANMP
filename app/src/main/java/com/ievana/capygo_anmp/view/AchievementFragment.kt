@@ -38,6 +38,7 @@ class AchievementFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(AchievementViewModel::class.java)
         val gameId = AchievementFragmentArgs.fromBundle(requireArguments()).idGame
         viewModel.refresh(gameId)
+        viewModel.fetchImg(gameId)
         binding.recView.layoutManager = LinearLayoutManager(context)
         binding.recView.adapter = achievementListAdapter
 
@@ -91,6 +92,15 @@ class AchievementFragment : Fragment() {
             achievementListAdapter.updateAchievement(it)
         })
 
+        viewModel.imgLD.observe(viewLifecycleOwner, Observer { imageUrl ->
+
+            val imgURLClean = imageUrl[0].replace("[", "").replace("]", "")
+            if (!imageUrl.isNullOrEmpty()) {
+                Picasso.get()
+                    .load(imgURLClean)
+                    .into(binding.gameImage)
+            }
+        })
 
         viewModel.achievesLD.observe(viewLifecycleOwner, Observer {
             Log.e("ach frag", " data is null")
