@@ -43,7 +43,7 @@ class TeamMemberFragment : Fragment() {
 //        binding.textView.text = teamName
         viewModel = ViewModelProvider(this).get(DetailMemberViewModel::class.java)
         viewModel.fetchMember(id)
-
+        viewModel.fetchImg(id)
         binding.recViewTeamMember.layoutManager = LinearLayoutManager(context)
         binding.recViewTeamMember.adapter = teamMemberAdapter
 
@@ -51,15 +51,15 @@ class TeamMemberFragment : Fragment() {
     }
 
     fun observeViewModel(){
-//        viewModel.detailMemberLD.observe(viewLifecycleOwner, Observer { teams ->
-//            // Mengambil tim yang sesuai dengan teamID
-//            val selectedTeam = teams.find { it.idMember.toString() == teamID }
-//
-////            // Jika tim yang sesuai ditemukan, update daftar anggota tim di adapter
-////            selectedTeam?.let {
-////                teamMemberAdapter.updateTeamMember(it.teamMember)
-////            }
-//        })
+        viewModel.imgLD.observe(viewLifecycleOwner, Observer { imageUrl ->
+
+            val imgURLClean = imageUrl[0].replace("[", "").replace("]", "")
+            if (!imageUrl.isNullOrEmpty()) {
+                Picasso.get()
+                    .load(imgURLClean)
+                    .into(binding.imgGame)
+            }
+        })
 
         viewModel.detailMemberLD.observe(viewLifecycleOwner, Observer { members ->
             members?.let {

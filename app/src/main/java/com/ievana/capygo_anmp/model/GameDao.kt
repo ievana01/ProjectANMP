@@ -18,8 +18,14 @@ interface GameDao {
     @Query("SELECT * FROM team_game INNER JOIN team ON team_game.idTeam = team.idTeam WHERE idGame = :idGame")
     fun getTeam(idGame: Int): List<Team>
 
-    @Query("SELECT * FROM member INNER JOIN team_game ON team_game.idTeam = member.idTeam WHERE idGame=:idGame")
-    fun getMember(idGame: Int): List<Member>
+    @Query("SELECT game.id, game.image FROM game INNER JOIN team_game ON team_game.idGame = game.id WHERE game.id = :idGame GROUP BY game.id, game.image")
+    fun getImage(idGame: Int): List<Game>
+
+    @Query("SELECT game.id, game.image FROM game INNER JOIN team_game ON team_game.idGame = game.id WHERE team_game.idTeam = :idTeam GROUP BY game.id, game.image")
+    fun getImageMember(idTeam: Int): List<Game>
+
+    @Query("SELECT * FROM member INNER JOIN team_game ON team_game.idTeam = member.idTeam WHERE member.idTeam=:idTeam GROUP BY member.idMember")
+    fun getMember(idTeam: Int): List<Member>
 
     @Query("UPDATE team SET `like`=:like WHERE idTeam=:idTeam")
     fun updateLikeTeam(like:Int, idTeam: Int)

@@ -137,6 +137,9 @@ fun populateSeedData(database: SupportSQLiteDatabase) {
         "INSERT into 'member' (idMember, idTeam, memberName, role, memberImage) VALUES (3, 3, 'Joni', 'Support', 'https://robohash.org/teamsupport')")
 
     database.execSQL(
+        "INSERT into 'member' (idMember, idTeam, memberName, role, memberImage) VALUES (4, 4, 'Harley', 'All Role', 'https://robohash.org/teamAll')")
+
+    database.execSQL(
         "INSERT into 'achivement' (idAch,idGame, year, idTeam,competitionTitle) VALUES (1, 1, '2023', 1, 'MPL Indonesia Season 15')")
 
     database.execSQL(
