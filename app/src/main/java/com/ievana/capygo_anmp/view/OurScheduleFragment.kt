@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ievana.capygo_anmp.R
 import com.ievana.capygo_anmp.databinding.FragmentOurScheduleBinding
+import com.ievana.capygo_anmp.model.Schedule
 import com.ievana.capygo_anmp.viewmodel.ScheduleViewModel
 
 class OurScheduleFragment : Fragment() {
@@ -37,8 +38,10 @@ class OurScheduleFragment : Fragment() {
     }
 
     fun observeViewModel(){
-        viewModel.scheduleLD.observe(viewLifecycleOwner,{
-            scheduleAdapter.updateScheduleList(it)
+        viewModel.scheduleLD.observe(viewLifecycleOwner,{schedules ->
+            schedules?.let {
+                scheduleAdapter.updateScheduleList(it as ArrayList<Schedule>)
+            }
         })
 
         viewModel.scheduleLoadErrorLD.observe(viewLifecycleOwner,{

@@ -51,6 +51,13 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
         database.execSQL(
             "CREATE TABLE 'team_game' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'idTeam' INTEGER, 'idGame' INTEGER)"
         )
+        database.execSQL(
+            "CREATE TABLE 'schedule' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,'date' TEXT,'time' TEXT, 'ytLS' TEXT, 'idGame' INTEGER, 'team' TEXT, 'location' TEXT, 'description' TEXT)"
+        )
+
+
+
+
 
 //        database.execSQL(
 //            "CREATE TABLE 'team' ('idTeam' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'idGame' INTEGER, 'teamName' TEXT, 'description' TEXT, 'like' INTEGER, 'imageTeam' TEXT)")
@@ -67,7 +74,7 @@ fun populateSeedData(database: SupportSQLiteDatabase) {
         "INSERT into 'game' (id,gameName, description,image) " +
                 "VALUES (1, 'Mobile Legends', 'Mobile Legends: Bang Bang (MLBB) is a mobile multiplayer online battle arena (MOBA) game developed and published by Chinese developer Moonton, a subsidiary of ByteDance. The game was released in 2016 and grew in popularity, most prominently in Southeast Asia.', " +
                 "'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Mobile_Legends_Bang_Bang_logo.png/330px-Mobile_Legends_Bang_Bang_logo.png')"
-                )
+    )
 
     database.execSQL(
         "INSERT into 'game' (id,gameName, description,image) " +
@@ -141,8 +148,14 @@ fun populateSeedData(database: SupportSQLiteDatabase) {
         "INSERT into 'achivement' (idAch,idGame, year, idTeam,competitionTitle) VALUES (2, 2, '2024', 2, 'Lomba Valorant')")
     database.execSQL(
         "INSERT into 'achivement' (idAch,idGame, year, idTeam,competitionTitle) VALUES (3, 3, '2021', 3, 'Lomba Genshin')")
+    database.execSQL(
+        "INSERT INTO 'schedule' (id, date, time, ytLS, idGame, team, location, description) VALUES (1, '2025-01-20', '14:00', 'Competition E-Sport', 1, 'Team MoLe A vs Team Genshin A', 'Surabaya Hall-Arena 1', 'Pertandingan persahabatan antara Team MoLe A dan Team Genshin A');"
+    )
+    database.execSQL(
+        "INSERT INTO 'schedule' (id, date, time, ytLS, idGame, team, location, description) VALUES (2, '2025-01-22', '18:30', 'AYO E-SPORT', 2, 'Team Valo A vs Team SerbaBisa', 'Jakarta Hall-Arena 2', 'Kompetisi Valorant untuk perebutan juara 1');"
+    )
+    database.execSQL(
+        "INSERT INTO 'schedule' (id, date, time, ytLS, idGame, team, location, description) VALUES (3, '2025-01-25', '16:00', 'MOBA E-SPORT', 3, 'Team Genshin A vs Team MoLe A', 'Malang Hall-Arena 3', 'Lomba Genshin Impact yang diadakan untuk mencari pemenang terbaik');"
+    )
 
 }
-
-
-

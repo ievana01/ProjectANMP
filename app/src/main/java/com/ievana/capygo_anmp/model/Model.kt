@@ -2,6 +2,7 @@ package com.ievana.capygo_anmp.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.util.stream.BaseStream
@@ -118,19 +119,26 @@ data class Member(
     var idMember: Int=0
 }
 
+@Entity(tableName = "schedule")
 data class Schedule(
-    var id: String,
+    @PrimaryKey(autoGenerate = true)
+    var id: Int,
+    @ColumnInfo(name="date")
     var date: String?,
+    @ColumnInfo(name="time")
     var time: String?,
-    @SerializedName("youtubeLiveStream")
+    @ColumnInfo(name="ytLS")
     var ytLS:String?,
-    var gameName: String?,
+    @ColumnInfo(name="idGame")
+    var idGame: Int,
+    @ColumnInfo(name="team")
     var team: String?,
+    @ColumnInfo(name="location")
     var location:String?,
-    @SerializedName("eventDescription")
-    var desc:String?,
-    var gameImage: String?
+    @ColumnInfo(name="description")
+    var description:String?
 )
+
 
 
 

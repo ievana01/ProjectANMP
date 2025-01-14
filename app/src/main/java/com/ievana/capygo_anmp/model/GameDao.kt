@@ -29,4 +29,13 @@ interface GameDao {
 
     @Query("SELECT * FROM achivement INNER JOIN game ON achivement.idGame = game.id WHERE game.id = :idGame AND achivement.year=:selecYear")
     fun getAchYear(idGame: Int, selecYear:String): List<Achievement>
+
+    @Query("SELECT * FROM schedule")
+    fun getAllSchedules(): List<Schedule>
+
+    @Query("SELECT * FROM game WHERE id = :idGame")
+    fun getGameById(idGame: Int):Game
+
+    @Query("SELECT * FROM schedule WHERE id = :idSchedule")
+    fun getScheduleById(idSchedule:Int):Schedule
 }

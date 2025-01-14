@@ -10,7 +10,7 @@ import com.ievana.capygo_anmp.util.MIGRATION_1_2
 import com.ievana.capygo_anmp.util.populateSeedData
 
 
-@Database(entities = arrayOf(Game::class, Member::class, Team::class, TeamGame::class ,Achievement::class), version = 2)
+@Database(entities = arrayOf(Game::class, Member::class, Team::class, TeamGame::class ,Achievement::class,Schedule::class), version = 2)
 abstract class GameDatabase: RoomDatabase() {
     abstract fun gameDao(): GameDao
 

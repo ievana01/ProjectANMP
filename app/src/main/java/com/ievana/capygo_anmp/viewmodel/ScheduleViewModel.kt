@@ -4,50 +4,54 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.ievana.capygo_anmp.model.Schedule
-
-class ScheduleViewModel (application: Application):AndroidViewModel(application){
-    val scheduleLD = MutableLiveData<ArrayList<Schedule>>()
+import com.ievana.capygo_anmp.util.buildDb
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
+class ScheduleViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
+    val scheduleLD = MutableLiveData<List<Schedule>>()
     val scheduleLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
-    val TAG = "volleyTag"
-    private  var queue: RequestQueue? = null
+    private var job = Job()
 
-    fun refresh(){
+    override val coroutineContext: CoroutineContext
+        get() = job + Dispatchers.IO
+
+    fun refresh() {
         loadingLD.value = true
         scheduleLoadErrorLD.value = false
-
-        queue =  Volley.newRequestQueue(getApplication())
-        val url = "https://www.jsonkeeper.com/b/T1FU"
-
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            {
-                val sType = object :TypeToken<List<Schedule>>(){ }.type
-                val result = Gson().fromJson<List<Schedule>>(it,sType)
-                scheduleLD.value = result as ArrayList<Schedule>?
-                loadingLD.value = false
-                Log.d("showvoley",result.toString())
-            },{
-                Log.d("showvoley",it.toString())
-                scheduleLoadErrorLD.value = false
-                loadingLD.value = false
+        launch {
+            try {
+                val db = buildDb(getApplication())
+                val schedules = db.gameDao().getAllSchedules()
+                scheduleLD.postValue(schedules)
+                Log.d("ScheduleViewModel", "Schedule $schedules")
+            } catch (e: Exception) {
+                scheduleLoadErrorLD.postValue(true)
+                Log.e("ScheduleViewModel", "Error: ${e.message}")
+            } finally {
+                loadingLD.postValue(false)
             }
+        }
+    }
 
-        )
-        stringRequest.tag = TAG
-        queue?.add(stringRequest)
-
+    fun clearTask(schedule: Schedule) {
+        launch {
+            try {
+                val db = buildDb(getApplication())
+//                db.gameDao().deleteSchedule(schedule)
+                refresh() // Refresh data setelah menghapus
+            } catch (e: Exception) {
+                Log.e("ScheduleViewModel", "Error: ${e.message}")
+            }
+        }
     }
 
     override fun onCleared() {
         super.onCleared()
-        queue?.cancelAll(TAG)
+        job.cancel() // Batalkan coroutine jika ViewModel dihancurkan
     }
 }

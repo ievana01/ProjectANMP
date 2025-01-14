@@ -8,7 +8,13 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import com.ievana.capygo_anmp.R
 import com.ievana.capygo_anmp.databinding.FragmentScheduleDetailBinding
+import com.ievana.capygo_anmp.model.GameDao
+import com.ievana.capygo_anmp.model.GameDatabase
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ScheduleDetailFragment : Fragment() {
     private lateinit var binding : FragmentScheduleDetailBinding
@@ -23,19 +29,20 @@ class ScheduleDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if(arguments != null){
-            val image = ScheduleDetailFragmentArgs.fromBundle(requireArguments()).gameImage
-            val yt = ScheduleDetailFragmentArgs.fromBundle(requireArguments()).ytName
-            val location = ScheduleDetailFragmentArgs.fromBundle(requireArguments()).location
-            val time = ScheduleDetailFragmentArgs.fromBundle(requireArguments()).time
-            val tim = ScheduleDetailFragmentArgs.fromBundle(requireArguments()).team
-            val desc = ScheduleDetailFragmentArgs.fromBundle(requireArguments()).desc
-            val name = ScheduleDetailFragmentArgs.fromBundle(requireArguments()).gameName
-            Picasso.get().load(image).into(binding.imgGameSch)
-            binding.txtYt.text = yt +" - "+name
-            binding.txtLocation.text = location+" ("+time+")"
-            binding.txtTeamSch.text = tim
-            binding.txtDescSch.text = desc
+            val idSchedule = ScheduleDetailFragmentArgs.fromBundle(requireArguments()).idSchedule
+            val database = GameDatabase.invoke(requireContext())
+            val dao = database.gameDao()
 
+            CoroutineScope(Dispatchers.IO).launch {
+                val schedule = dao.getScheduleById(idSchedule)
+                val game = dao.getGameById(schedule.idGame)
+
+                // Update UI di thread utama
+                withContext(Dispatchers.Main) {
+                    binding.schedule = schedule
+                    binding.game = game
+                }
+            }
 
         }
 

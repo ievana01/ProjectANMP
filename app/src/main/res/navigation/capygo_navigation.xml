@@ -73,26 +73,8 @@
         android:label="Schedule Detail"
         tools:layout="@layout/fragment_schedule_detail">
         <argument
-            android:name="desc"
-            app:argType="string" />
-        <argument
-            android:name="gameImage"
-            app:argType="string" />
-        <argument
-            android:name="ytName"
-            app:argType="string" />
-        <argument
-            android:name="location"
-            app:argType="string" />
-        <argument
-            android:name="time"
-            app:argType="string" />
-        <argument
-            android:name="team"
-            app:argType="string" />
-        <argument
-            android:name="gameName"
-            app:argType="string" />
+            android:name="idSchedule"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
